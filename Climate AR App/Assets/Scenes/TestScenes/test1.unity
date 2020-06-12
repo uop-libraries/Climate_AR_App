@@ -1256,15 +1256,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4296572419076330, guid: 1ec33018d2594f2418de8fbc127479fd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.78
+      value: -1.59
       objectReference: {fileID: 0}
     - target: {fileID: 4296572419076330, guid: 1ec33018d2594f2418de8fbc127479fd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.76
+      value: 4.2028
       objectReference: {fileID: 0}
     - target: {fileID: 4296572419076330, guid: 1ec33018d2594f2418de8fbc127479fd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.13
+      value: 1.7286
       objectReference: {fileID: 0}
     - target: {fileID: 4296572419076330, guid: 1ec33018d2594f2418de8fbc127479fd, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1297,6 +1297,18 @@ PrefabInstance:
     - target: {fileID: 4296572419076330, guid: 1ec33018d2594f2418de8fbc127479fd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4296572419076330, guid: 1ec33018d2594f2418de8fbc127479fd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 4296572419076330, guid: 1ec33018d2594f2418de8fbc127479fd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 4296572419076330, guid: 1ec33018d2594f2418de8fbc127479fd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.51
       objectReference: {fileID: 0}
     - target: {fileID: 143117462764601806, guid: 1ec33018d2594f2418de8fbc127479fd,
         type: 3}
@@ -1331,6 +1343,96 @@ PrefabInstance:
     - target: {fileID: 114170963787531966, guid: 1ec33018d2594f2418de8fbc127479fd,
         type: 3}
       propertyPath: idleStates.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114170963787531966, guid: 1ec33018d2594f2418de8fbc127479fd,
+        type: 3}
+      propertyPath: idleStates.Array.data[0].stateName
+      value: Waving
+      objectReference: {fileID: 0}
+    - target: {fileID: 114170963787531966, guid: 1ec33018d2594f2418de8fbc127479fd,
+        type: 3}
+      propertyPath: idleStates.Array.data[0].animationBool
+      value: isWaving
+      objectReference: {fileID: 0}
+    - target: {fileID: 114170963787531966, guid: 1ec33018d2594f2418de8fbc127479fd,
+        type: 3}
+      propertyPath: idleStates.Array.data[0].maxStateTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114170963787531966, guid: 1ec33018d2594f2418de8fbc127479fd,
+        type: 3}
+      propertyPath: idleStates.Array.data[0].stateWeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114170963787531966, guid: 1ec33018d2594f2418de8fbc127479fd,
+        type: 3}
+      propertyPath: movementStates.Array.data[0].maxStateTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114170963787531966, guid: 1ec33018d2594f2418de8fbc127479fd,
+        type: 3}
+      propertyPath: movementStates.Array.data[0].turnSpeed
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 114170963787531966, guid: 1ec33018d2594f2418de8fbc127479fd,
+        type: 3}
+      propertyPath: wanderZone
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114170963787531966, guid: 1ec33018d2594f2418de8fbc127479fd,
+        type: 3}
+      propertyPath: awareness
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 195791597558742274, guid: 1ec33018d2594f2418de8fbc127479fd,
+        type: 3}
+      propertyPath: m_AngularSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 195791597558742274, guid: 1ec33018d2594f2418de8fbc127479fd,
+        type: 3}
+      propertyPath: m_Speed
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 195791597558742274, guid: 1ec33018d2594f2418de8fbc127479fd,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 195791597558742274, guid: 1ec33018d2594f2418de8fbc127479fd,
+        type: 3}
+      propertyPath: m_Height
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 195791597558742274, guid: 1ec33018d2594f2418de8fbc127479fd,
+        type: 3}
+      propertyPath: m_ObstacleAvoidanceType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 195791597558742274, guid: 1ec33018d2594f2418de8fbc127479fd,
+        type: 3}
+      propertyPath: avoidancePriority
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 195791597558742274, guid: 1ec33018d2594f2418de8fbc127479fd,
+        type: 3}
+      propertyPath: m_Acceleration
+      value: 0.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 195791597558742274, guid: 1ec33018d2594f2418de8fbc127479fd,
+        type: 3}
+      propertyPath: m_WalkableMask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 195791597558742274, guid: 1ec33018d2594f2418de8fbc127479fd,
+        type: 3}
+      propertyPath: m_AutoTraverseOffMeshLink
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 195791597558742274, guid: 1ec33018d2594f2418de8fbc127479fd,
+        type: 3}
+      propertyPath: m_AutoRepath
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
