@@ -1108,6 +1108,7 @@ namespace PolyPerfect
         private Vector3 RandonPointInRange()
         {
             Vector3 randomPoint = origin + Random.insideUnitSphere * wanderZone;
+            //Vector3 randomPoint = origin + Random.insideUnitSphere * .05f; //testing KC
             return new Vector3(randomPoint.x, transform.position.y, randomPoint.z);
         }
 
