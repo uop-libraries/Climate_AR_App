@@ -133,7 +133,7 @@ namespace PolyPerfect
         {
             if (!showGizmos)
                 return;
-
+            //Debug.Log("useNavMesh is " + useNavMesh);
             if (drawWanderRange)
             {
                 // Draw circle of radius wander zone
@@ -171,9 +171,12 @@ namespace PolyPerfect
             // Draw target position.
             if (useNavMesh)
             {
-                if (navMeshAgent.remainingDistance > 1f)
+                //if (navMeshAgent.remainingDistance > 1f)
+                if (navMeshAgent.remainingDistance > .01f) //testing KC
                 {
-                    Gizmos.DrawSphere(navMeshAgent.destination + new Vector3(0f, 0.1f, 0f), 0.2f);
+                       // Gizmos.DrawSphere(navMeshAgent.destination + new Vector3(0f, 0.1f, 0f), 0.2f);
+                    Gizmos.DrawSphere(navMeshAgent.destination + new Vector3(0f, 0.01f, 0f), 0.02f); //testing KC
+
                     Gizmos.DrawLine(transform.position, navMeshAgent.destination);
                 }
             }
@@ -319,7 +322,7 @@ namespace PolyPerfect
             if (navMeshAgent)
             {
                 useNavMesh = true;
-                navMeshAgent.stoppingDistance = contingencyDistance;
+                //navMeshAgent.stoppingDistance = contingencyDistance;  //testing comment out KC this worked!
             }
 
             if (matchSurfaceRotation && transform.childCount > 0)
@@ -353,6 +356,7 @@ namespace PolyPerfect
 
         private void DecideNextState(bool wasIdle, bool firstState = false)
         {
+            Debug.Log("DecideNextState" );
             attacking = false;
 
             // Look for a predator.
@@ -461,6 +465,7 @@ namespace PolyPerfect
 
         private void BeginIdleState(bool firstState = false)
         {
+            Debug.Log("BeginIdleState KC");
             if (!firstState)
             {
                 int randomValue = Random.Range(0, totalIdleStateWeight);
@@ -516,7 +521,7 @@ namespace PolyPerfect
         private void BeginWanderState()
         {
             Vector3 target = RandonPointInRange();
-
+            Debug.Log("BeginWanderState KC");
             int slowestMovementState = 0;
             for (int i = 0; i < movementStates.Length; i++)
             {
@@ -553,8 +558,12 @@ namespace PolyPerfect
             navMeshAgent.SetDestination(target);
 
             float timeMoving = 0f;
+            Debug.Log("movementStates[currentState].maxStateTimeb " + movementStates[currentState].maxStateTime);
             while ((navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance || timeMoving < 0.1f) && timeMoving < movementStates[currentState].maxStateTime)
             {
+                Debug.Log("MOVING KC + timeMoving is " + timeMoving);
+                Debug.Log("navMeshAgent.remainingDistance  " + navMeshAgent.remainingDistance);
+                Debug.Log("navMeshAgent.stoppingDistance " + navMeshAgent.stoppingDistance);
                 timeMoving += Time.deltaTime;
                 yield return null;
             }
@@ -565,6 +574,8 @@ namespace PolyPerfect
             {
                 animator.SetBool(movementStates[currentState].animationBool, false);
             }
+
+            Debug.Log("DONE MOVING KC");
 
             DecideNextState(false);
         }
@@ -1108,7 +1119,9 @@ namespace PolyPerfect
         private Vector3 RandonPointInRange()
         {
             Vector3 randomPoint = origin + Random.insideUnitSphere * wanderZone;
-            //Vector3 randomPoint = origin + Random.insideUnitSphere * .05f; //testing KC
+            //Vector3 randomPoint = origin + Random.insideUnitSphere * .005f * wanderZone; //testing KC
+            //randomPoint = new Vector3(-0.402f, 0.0139f, -0.3637f); //testing KC
+            Debug.Log("Random Point is " + randomPoint); //testing KC
             return new Vector3(randomPoint.x, transform.position.y, randomPoint.z);
         }
 
