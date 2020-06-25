@@ -92,7 +92,7 @@ namespace PolyPerfect
         [SerializeField, Tooltip("If true, this animal will rotate to match the terrain. Ensure you have set the layer of the terrain as 'Terrain'.")]
         private bool matchSurfaceRotation = false;
         [SerializeField, Tooltip("How fast the animnal rotates to match the surface rotation.")]
-        private float surfaceRotationSpeed = 2f;
+        private float surfaceRotationSpeed = 400f;
 
         //[Space(), Space(5)]
         [SerializeField, Tooltip("If true, AI changes to this animal will be logged in the console.")]
@@ -551,6 +551,16 @@ namespace PolyPerfect
 
         private IEnumerator MovementState(Vector3 target)
         {
+            /////////// testing KC
+            //moving = true;
+            //targetLocation = target;
+            //currentTurnSpeed = movementStates[currentState].turnSpeed;
+
+            float walkTime = 0f;
+           // float timeUntilAbortWalk = Vector3.Distance(transform.position, target) / movementStates[currentState].moveSpeed;
+
+
+            /////////// Testing KC
             moving = true;
 
             navMeshAgent.speed = movementStates[currentState].moveSpeed;
@@ -561,6 +571,20 @@ namespace PolyPerfect
             Debug.Log("movementStates[currentState].maxStateTimeb " + movementStates[currentState].maxStateTime);
             while ((navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance || timeMoving < 0.1f) && timeMoving < movementStates[currentState].maxStateTime)
             {
+                
+                /// testing KC
+                //characterController.SimpleMove(transform.TransformDirection(Vector3.forward) * movementStates[currentState].moveSpeed); // if you have this code, then the character stops moving but rotates
+                Vector3 relativePos = target - transform.position;
+                Quaternion rotation = Quaternion.LookRotation(relativePos);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * (currentTurnSpeed / 2));
+                // above code needed to rotate
+
+                currentTurnSpeed += Time.deltaTime;
+                //currentTurnSpeed += Time.deltaTime + 20f; //testing KC
+
+                walkTime += Time.deltaTime;
+                ////testing KC
+                
                 Debug.Log("MOVING KC + timeMoving is " + timeMoving);
                 Debug.Log("navMeshAgent.remainingDistance  " + navMeshAgent.remainingDistance);
                 Debug.Log("navMeshAgent.stoppingDistance " + navMeshAgent.stoppingDistance);
@@ -595,8 +619,10 @@ namespace PolyPerfect
 
                 Vector3 relativePos = target - transform.position;
                 Quaternion rotation = Quaternion.LookRotation(relativePos);
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * (currentTurnSpeed / 10));
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * (currentTurnSpeed / 10)); 
+
                 currentTurnSpeed += Time.deltaTime;
+                //currentTurnSpeed += Time.deltaTime * 1.5f; //testing KC
 
                 walkTime += Time.deltaTime;
                 yield return null;
@@ -1116,8 +1142,9 @@ namespace PolyPerfect
             }
         }
 
-        private Vector3 RandonPointInRange()
+        private Vector3 RandonPointInRange() //moves avatar, called once when avatar enters wander state
         {
+            Debug.Log("randon point in range");
             Vector3 randomPoint = origin + Random.insideUnitSphere * wanderZone;
             //Vector3 randomPoint = origin + Random.insideUnitSphere * .005f * wanderZone; //testing KC
             //randomPoint = new Vector3(-0.402f, 0.0139f, -0.3637f); //testing KC
@@ -1136,6 +1163,7 @@ namespace PolyPerfect
                     break;
                 }
 
+                Debug.Log("turn to look at the target ");
                 float step = 2f * Time.deltaTime;
                 Vector3 newDirection = Vector3.RotateTowards(transform.forward, direction, step, 0.0f);
                 transform.rotation = Quaternion.LookRotation(newDirection);
