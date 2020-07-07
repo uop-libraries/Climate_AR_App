@@ -103,7 +103,7 @@ Material:
     - _Surface: 1
     - _UVSec: 0
     - _WorkflowMode: 1
-    - _ZWrite: 0
+    - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.16033648, g: 0.62669885, b: 0.8000001, a: 0.484}
     - _Color: {r: 0.16033648, g: 0.62669885, b: 0.8000001, a: 0.484}
