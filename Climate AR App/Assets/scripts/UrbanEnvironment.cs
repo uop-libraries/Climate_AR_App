@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UrbanEnvironment : MonoBehaviour
 {
-    public GameObject riverWater;
+    public GameObject cityWater;
     public GameObject cityGroundWater;
     public GameObject leveeGroundWater;
 
@@ -27,12 +27,12 @@ public class UrbanEnvironment : MonoBehaviour
 
     public void FloodTime(bool isRaising)
     {
-        Vector3 currentPosition = riverWater.transform.position;
-        Vector3 currentScale = riverWater.transform.localScale;
+        Vector3 currentPosition = cityWater.transform.position;
+        Vector3 currentScale = cityWater.transform.localScale;
         if (isRaising)
         {
-            riverWater.transform.position = new Vector3(currentPosition.x, currentPosition.y+riverRaiseSpeed, currentPosition.z);
-            riverWater.transform.localScale = new Vector3(currentScale.x + riverExpanseAmount, currentScale.y, currentScale.z);
+            cityWater.transform.position = new Vector3(currentPosition.x, currentPosition.y+riverRaiseSpeed, currentPosition.z);
+            cityWater.transform.localScale = new Vector3(currentScale.x + riverExpanseAmount, currentScale.y, currentScale.z);
 
             //  transform.position = new Vector3(transform.position.x, 0, transform.position.z);
 
