@@ -5,23 +5,25 @@ using UnityEngine;
 public class UrbanEnvironment : MonoBehaviour
 {
     public GameObject cityWater;
-    public GameObject cityGroundWater;
-    public GameObject leveeGroundWater;
     public GameObject clouds;
     public GameObject rainStorm;
     public GameObject rainSound;
 
     public float riverRaiseSpeed;
-    public float riverExpanseAmount;
-    public float cityRaiseSpeed;
-    public float LeveeRaiseSpeed;
+    //public float riverExpanseAmount;
+    public float RainFallAmountOverTime; //how much rain is predicted per a time interval
+    
 
     private bool stormHappening;
     private float expandSize = .01f;
     private float sizeLimit = 2.4f;
+    private float totalRainFallAmount; //running total of the total rain fall, if there is no rain, then this amount slowly decreases...
+
+
     // Start is called before the first frame update
     void Start()
     {
+        
         clouds.SetActive(false);
         rainStorm.SetActive(false);
         //rainSound.SetActive(false);
@@ -31,14 +33,27 @@ public class UrbanEnvironment : MonoBehaviour
     void Update()
     {
         Vector3 currentScale = clouds.transform.localScale;
-        if (stormHappening && clouds.transform.localScale.z < sizeLimit) // add/grow the clouds
+        if (stormHappening  ) // add/grow the clouds
         {
-            clouds.transform.localScale = new Vector3(currentScale.x + expandSize, currentScale.y + expandSize, currentScale.z + expandSize);
+            if (clouds.transform.localScale.z < sizeLimit) {
+                clouds.transform.localScale = new Vector3(currentScale.x + expandSize, currentScale.y + expandSize, currentScale.z + expandSize);
+            }
+            if (true) {
+                Debug.Log("totalRainFallAmount " + totalRainFallAmount);
+                totalRainFallAmount += RainFallAmountOverTime;
+            }
         }
-        else if (!stormHappening && clouds.transform.localScale.z > 0f) // remove/shrink the clouds
+        else if (!stormHappening) // remove/shrink the clouds
         {
-            clouds.transform.localScale = new Vector3(currentScale.x - expandSize, currentScale.y - expandSize, currentScale.z - expandSize);
-
+            if (clouds.transform.localScale.z > 0f)
+            {
+                clouds.transform.localScale = new Vector3(currentScale.x - expandSize, currentScale.y - expandSize, currentScale.z - expandSize);
+            }
+            if (totalRainFallAmount > 0.0f)
+            {
+                Debug.Log("totalRainFallAmount " + totalRainFallAmount);
+                totalRainFallAmount -= RainFallAmountOverTime;
+            }
         }
     }
 
@@ -70,5 +85,10 @@ public class UrbanEnvironment : MonoBehaviour
         //rainSound.SetActive(false);
         stormHappening = false;
 
+    }
+
+    public float GetTotalRainFallAmount()
+    {
+        return totalRainFallAmount;
     }
 }
