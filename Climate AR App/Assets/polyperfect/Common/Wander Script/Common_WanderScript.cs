@@ -465,7 +465,7 @@ namespace PolyPerfect
 
         private void BeginIdleState(bool firstState = false)
         {
-            Debug.Log("BeginIdleState KC");
+           // Debug.Log("BeginIdleState KC");
             if (!firstState)
             {
                 int randomValue = Random.Range(0, totalIdleStateWeight);
@@ -521,7 +521,7 @@ namespace PolyPerfect
         private void BeginWanderState()
         {
             Vector3 target = RandonPointInRange();
-            Debug.Log("BeginWanderState KC");
+            //Debug.Log("BeginWanderState KC");
             int slowestMovementState = 0;
             for (int i = 0; i < movementStates.Length; i++)
             {
@@ -568,7 +568,7 @@ namespace PolyPerfect
             navMeshAgent.SetDestination(target);
 
             float timeMoving = 0f;
-            Debug.Log("movementStates[currentState].maxStateTimeb " + movementStates[currentState].maxStateTime);
+            //Debug.Log("movementStates[currentState].maxStateTimeb " + movementStates[currentState].maxStateTime);
             while ((navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance || timeMoving < 0.1f) && timeMoving < movementStates[currentState].maxStateTime)
             {
                 
@@ -585,9 +585,9 @@ namespace PolyPerfect
                 walkTime += Time.deltaTime;
                 ////testing KC
                 
-                Debug.Log("MOVING KC + timeMoving is " + timeMoving);
-                Debug.Log("navMeshAgent.remainingDistance  " + navMeshAgent.remainingDistance);
-                Debug.Log("navMeshAgent.stoppingDistance " + navMeshAgent.stoppingDistance);
+                //Debug.Log("MOVING KC + timeMoving is " + timeMoving);
+                //Debug.Log("navMeshAgent.remainingDistance  " + navMeshAgent.remainingDistance);
+                //Debug.Log("navMeshAgent.stoppingDistance " + navMeshAgent.stoppingDistance);
                 timeMoving += Time.deltaTime;
                 yield return null;
             }
@@ -599,7 +599,7 @@ namespace PolyPerfect
                 animator.SetBool(movementStates[currentState].animationBool, false);
             }
 
-            Debug.Log("DONE MOVING KC");
+            //Debug.Log("DONE MOVING KC");
 
             DecideNextState(false);
         }
@@ -780,7 +780,7 @@ namespace PolyPerfect
 
             if (movementStates.Length <= 0)
             {
-                Debug.Log("Movement states length is 0");
+                //Debug.Log("Movement states length is 0");
                 this.enabled = false;
                 return;
             }
@@ -1144,11 +1144,11 @@ namespace PolyPerfect
 
         private Vector3 RandonPointInRange() //moves avatar, called once when avatar enters wander state
         {
-            Debug.Log("randon point in range");
+            //Debug.Log("randon point in range");
             Vector3 randomPoint = origin + Random.insideUnitSphere * wanderZone;
             //Vector3 randomPoint = origin + Random.insideUnitSphere * .005f * wanderZone; //testing KC
             //randomPoint = new Vector3(-0.402f, 0.0139f, -0.3637f); //testing KC
-            Debug.Log("Random Point is " + randomPoint); //testing KC
+            //Debug.Log("Random Point is " + randomPoint); //testing KC
             return new Vector3(randomPoint.x, transform.position.y, randomPoint.z);
         }
 
@@ -1163,7 +1163,7 @@ namespace PolyPerfect
                     break;
                 }
 
-                Debug.Log("turn to look at the target ");
+                //Debug.Log("turn to look at the target ");
                 float step = 2f * Time.deltaTime;
                 Vector3 newDirection = Vector3.RotateTowards(transform.forward, direction, step, 0.0f);
                 transform.rotation = Quaternion.LookRotation(newDirection);

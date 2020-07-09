@@ -17,11 +17,22 @@ public class EnviroAudioSource : MonoBehaviour {
     public AudioSource audiosrc;
 	public bool isFadingIn = false;
 	public bool isFadingOut = false;
-
+    public float volumneLimit;
+    public bool playOnStart;
 
 	float currentAmbientVolume;
 	float currentWeatherVolume;
     float currentZoneVolume;
+
+
+    public void StartRainSound()
+    {
+        Debug.Log(" on StartRainSound ");
+        //audiosrc.Play();
+        //audiosrc.volume = 0f;
+        FadeIn(audiosrc.clip);
+
+    }
 
     void Start ()
 	{
@@ -71,14 +82,21 @@ public class EnviroAudioSource : MonoBehaviour {
 	{
 		if (EnviroSkyMgr.instance == null && !EnviroSkyMgr.instance.IsStarted())
             return;
-
+        if (!playOnStart) //added KC, to stop the storm from starting upon play
+        {
+            return;
+        }
 		currentAmbientVolume = Mathf.Lerp(currentAmbientVolume, EnviroSkyMgr.instance.ambientAudioVolume + EnviroSkyMgr.instance.ambientAudioVolumeModifier, 10f * Time.deltaTime);
 		currentWeatherVolume = Mathf.Lerp(currentWeatherVolume, EnviroSkyMgr.instance.weatherAudioVolume + EnviroSkyMgr.instance.weatherAudioVolumeModifier, 10 * Time.deltaTime);
 
         if (myFunction == AudioSourceFunction.Weather1 || myFunction == AudioSourceFunction.Weather2 || myFunction == AudioSourceFunction.Thunder){
-			if (isFadingIn && audiosrc.volume < currentWeatherVolume) {
-				audiosrc.volume += EnviroSkyMgr.instance.audioTransitionSpeed * Time.deltaTime;
-			} else if (isFadingIn && audiosrc.volume >= currentWeatherVolume - 0.01f) {
+            Debug.Log(" isFadingIn " + isFadingIn + " audiosrc.volume = " + audiosrc.volume);
+            //if (isFadingIn && audiosrc.volume < currentWeatherVolume && audiosrc.volume < volumneLimit) { // added in volume cap -KC
+            if (isFadingIn && audiosrc.volume < volumneLimit)      { // added in volume cap -KC
+                audiosrc.volume += EnviroSkyMgr.instance.audioTransitionSpeed * Time.deltaTime;
+                Debug.Log("isFadingIn && audiosrc.volume < volumneLimit");
+
+            } else if (isFadingIn && audiosrc.volume >= currentWeatherVolume - 0.01f) {
 				isFadingIn = false;
 			}
 
