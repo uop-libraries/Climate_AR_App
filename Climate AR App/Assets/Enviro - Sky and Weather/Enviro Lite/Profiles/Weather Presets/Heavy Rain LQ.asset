@@ -16,9 +16,9 @@ MonoBehaviour:
   Name: Heavy Rain
   Spring: 1
   possibiltyInSpring: 100
-  Summer: 1
+  Summer: 0
   possibiltyInSummer: 52
-  Autumn: 1
+  Autumn: 0
   possibiltyInAutumn: 100
   winter: 0
   possibiltyInWinter: 100
@@ -54,7 +54,7 @@ MonoBehaviour:
     particleCloudsOverwrite: 0
   fogStartDistance: 0
   fogDistance: 0
-  fogDensity: 0.001
+  fogDensity: 0.0001
   weatherSkyMod:
     serializedVersion: 2
     key0: {r: 0, g: 0, b: 0, a: 1}
@@ -144,17 +144,17 @@ MonoBehaviour:
     m_NumAlphaKeys: 4
   volumeLightIntensity: 1
   shadowIntensityMod: 0
-  heightFogDensity: 1.95
+  heightFogDensity: 0
   SkyFogHeight: 0.31
   skyFogStart: 0
-  SkyFogIntensity: 0.776
-  FogScatteringIntensity: 1.1
+  SkyFogIntensity: 1
+  FogScatteringIntensity: 1
   fogSunBlocking: 0
   moonIntensity: 0
   effectSystems:
-  - prefab: {fileID: 1000010755747430, guid: eb00aa0efab163240b0100942689e7fd, type: 3}
-    localPositionOffset: {x: 0, y: 0.01, z: 0}
-    localRotationOffset: {x: -90, y: 0, z: -180}
+  - prefab: {fileID: 1201738110129820, guid: a77c8f9b0fa362a45ae383b23ee95f50, type: 3}
+    localPositionOffset: {x: 0, y: 0, z: 0}
+    localRotationOffset: {x: 0, y: 0, z: 0}
   WindStrenght: 0.5
   wetnessLevel: 1
   snowLevel: 0
