@@ -155,12 +155,12 @@ MonoBehaviour:
   - prefab: {fileID: 1201738110129820, guid: a77c8f9b0fa362a45ae383b23ee95f50, type: 3}
     localPositionOffset: {x: 0, y: 0, z: 0}
     localRotationOffset: {x: 0, y: 0, z: 0}
-  WindStrenght: 0.5
+  WindStrenght: 0.826
   wetnessLevel: 1
   snowLevel: 0
   temperatureLevel: 0
   isLightningStorm: 0
-  lightningInterval: 10
+  lightningInterval: 5.7
   weatherSFX: {fileID: 8300000, guid: e60b9243727bbb5428fbb3e7f7fe44cd, type: 3}
   SpringDayAmbient: {fileID: 0}
   SpringNightAmbient: {fileID: 0}
