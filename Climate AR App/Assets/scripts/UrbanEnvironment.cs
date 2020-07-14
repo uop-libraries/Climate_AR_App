@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class UrbanEnvironment : MonoBehaviour
 {
-    public GameObject cityWater;
+    //public GameObject cityWater;
     public GameObject clouds;
     public GameObject rainStorm;
     public GameObject rainSound;
 
-    public float riverRaiseSpeed;
+    //public float riverRaiseSpeed;
     //public float riverExpanseAmount;
     public float RainFallAmountOverTime; //how much rain is predicted per a time interval
     
@@ -65,11 +65,11 @@ public class UrbanEnvironment : MonoBehaviour
         rainStorm.SetActive(true);
         rainSound.GetComponent<EnviroAudioSource>().StartRainSound();
         rainSound.GetComponent<EnviroAudioSource>().playOnStart = true;
-        Vector3 currentPosition = cityWater.transform.position;
+        //Vector3 currentPosition = cityWater.transform.position;
         //Vector3 currentScale = cityWater.transform.localScale;
         if (isRaising)
         {
-            cityWater.transform.position = new Vector3(currentPosition.x, currentPosition.y+riverRaiseSpeed, currentPosition.z);
+          //  cityWater.transform.position = new Vector3(currentPosition.x, currentPosition.y+riverRaiseSpeed, currentPosition.z);
             //cityWater.transform.localScale = new Vector3(currentScale.x + riverExpanseAmount, currentScale.y, currentScale.z);
 
             //  transform.position = new Vector3(transform.position.x, 0, transform.position.z);
@@ -90,5 +90,10 @@ public class UrbanEnvironment : MonoBehaviour
     public float GetTotalRainFallAmount()
     {
         return totalRainFallAmount;
+    }
+
+    public bool GetIsStormHappening()
+    {
+        return stormHappening;
     }
 }
