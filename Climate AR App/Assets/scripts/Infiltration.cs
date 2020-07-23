@@ -20,25 +20,25 @@ public class Infiltration : MonoBehaviour
     public float waterStorageAmount; //the total water storage amount before the soil cannont hold anymore water. think if this has the MAX size. 
     public float delayTime; //used to simulate when the initial rainfall hits the ground and soaks up. a rich soil will have a low delay time. (initial infiltration )
     public float maxWaterLevel; //the limit of how high the water will go before flooding into the ocean etc
-
+    public float waterSurfaceLevel; //the level at which the water starts to show
     float rain; // the rain falling
     private float startDelayAmount;
     private float currentWaterStorageAmount;
-    private Ground theGround;
+    //private Ground theGround;
     public float runoff;
     private float minLevelOfWater; //used to stop the water level from going "deep" below the ground.
     private bool doOnceRunoffFlag; //used for runoff
     // Start is called before the first frame update
     void Start()
     {
-        theGround = ground.GetComponent<Ground>();
+        //theGround = ground.GetComponent<Ground>();
         rain = RainInfo.GetComponent<UrbanEnvironment>().RainFallAmountOverTime; //get the amount of rain accumilating, this number increases when its raining and decreases till 0 when not raining
         startDelayAmount = delayTime;
         currentWaterStorageAmount = waterStorageAmount; // start with a number and subtract down 
         //groundStartingPoint = this.gameObject.transform.localPosition.y; //get the start of the water
         runoff = 0.0f;
         minLevelOfWater = this.transform.localPosition.y;
-        Debug.Log("currentWaterStorageAmount = " + currentWaterStorageAmount);
+        //Debug.Log("currentWaterStorageAmount = " + currentWaterStorageAmount);
         doOnceRunoffFlag = true;
     }
 
@@ -58,11 +58,11 @@ public class Infiltration : MonoBehaviour
             {
                 delayTime -= 1;
                 AdjustWaterLevel(0f);
-                Debug.Log("qw delay amount this.gameObject.transform.localPosition .y = " + this.gameObject.transform.localPosition.y);
+               // Debug.Log("qw delay amount this.gameObject.transform.localPosition .y = " + this.gameObject.transform.localPosition.y);
             }
             else // < the water is now infiltratiing the ground and the delay is done. We now will try to get the water into the ground. so subtract water lvl
             {
-                Debug.Log("runoff = " + runoff);
+                //Debug.Log("runoff = " + runoff);
                 if (!(runoff >= infiltration)) {
                     //AdjustWaterLevel(-.0001f); //make the water lvl go down since it is soaking up into the "earth". the math in the denominator is to slow down the decrease
                     AdjustWaterLevel(-2f*rain); //make the water lvl go down since it is soaking up into the "earth". the math in the denominator is to slow down the decrease
@@ -76,7 +76,14 @@ public class Infiltration : MonoBehaviour
                 {
                     infiltration = 0;
                 }
-                runoff += decreaseAmount;
+
+                Debug.Log("ww this.gameObject.transform.localPosition.y " + this.gameObject.transform.localPosition.y);
+                //need to check if the water is past the "ground" to be considered runoff WRONG! runoff is seen what it cross over infiltration
+                //if (this.gameObject.transform.localPosition.y >= waterSurfaceLevel)
+               // {
+                    Debug.Log("ww Runoff " + runoff);
+                    runoff += decreaseAmount;
+                //}
             }
 
      
@@ -85,7 +92,7 @@ public class Infiltration : MonoBehaviour
                 if (doOnceRunoffFlag) //reset the water ONCE! WHY??
                 {
                     ResetWaterLevel();
-                    Debug.Log("reset water");
+                    //Debug.Log("reset water");
                     doOnceRunoffFlag = false;
                 }
                 AdjustWaterLevel(speedOfRunoff);
@@ -108,7 +115,14 @@ public class Infiltration : MonoBehaviour
         if (this.gameObject.transform.localPosition.y >= minLevelOfWater) {
             Vector3 newPos = new Vector3(this.transform.localPosition.x, this.transform.localPosition.y + (rain + amount), this.transform.localPosition.z);
             gameObject.transform.localPosition = newPos;
-            Debug.Log("qw  AdjustWaterLevel = " + this.gameObject.transform.localPosition.y);
+            //Debug.Log("qw  AdjustWaterLevel = " + this.gameObject.transform.localPosition.y);
+
+            //if amount is negative then decrease infiltration since the water is going down
+            if (amount < 0.0f)
+            {
+                infiltration -= decreaseAmount;
+
+            }
 
         }
 
