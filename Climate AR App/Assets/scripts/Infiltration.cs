@@ -17,29 +17,24 @@ public class Infiltration : MonoBehaviour
 
     public float infiltration; //how much the ground can soak up over a certain time. 
     public float decreaseAmount; //used for debugging
-    public float waterStorageAmount; //the total water storage amount before the soil cannont hold anymore water. think if this has the MAX size. 
     public float delayTime; //used to simulate when the initial rainfall hits the ground and soaks up. a rich soil will have a low delay time. (initial infiltration )
     public float maxWaterLevel; //the limit of how high the water will go before flooding into the ocean etc
     public float waterSurfaceLevel; //the level at which the water starts to show
     float rain; // the rain falling
     private float startDelayAmount;
-    private float currentWaterStorageAmount;
-    //private Ground theGround;
-    public float runoff;
+    private float startInifiltration;
+    private float runoff;
     private float minLevelOfWater; //used to stop the water level from going "deep" below the ground.
-    private bool doOnceRunoffFlag; //used for runoff
     // Start is called before the first frame update
     void Start()
     {
+        startInifiltration = infiltration;
         //theGround = ground.GetComponent<Ground>();
         rain = RainInfo.GetComponent<UrbanEnvironment>().RainFallAmountOverTime; //get the amount of rain accumilating, this number increases when its raining and decreases till 0 when not raining
         startDelayAmount = delayTime;
-        currentWaterStorageAmount = waterStorageAmount; // start with a number and subtract down 
         //groundStartingPoint = this.gameObject.transform.localPosition.y; //get the start of the water
         runoff = 0.0f;
-        minLevelOfWater = this.transform.localPosition.y;
-        //Debug.Log("currentWaterStorageAmount = " + currentWaterStorageAmount);
-        doOnceRunoffFlag = true;
+        minLevelOfWater = this.transform.localPosition.y -.001f; // subtracted a small amount because for some reason the y value location is adjust slightly at run-time
     }
 
     // Update is called once per frame
@@ -51,7 +46,7 @@ public class Infiltration : MonoBehaviour
      */
     void Update()
     {
-        if (RainInfo.GetComponent<UrbanEnvironment>().GetIsStormHappening() && (this.transform.localPosition.y < maxWaterLevel) )
+        if (RainInfo.GetComponent<UrbanEnvironment>().GetIsStormHappening() && (this.transform.localPosition.y < maxWaterLevel) ) //if it is raining and is below the max water level
         {
             //Debug.Log("delayAmount = " + delayAmount);
             if (delayTime > 0.0f)//old fashion timer
@@ -63,7 +58,7 @@ public class Infiltration : MonoBehaviour
             else // < the water is now infiltratiing the ground and the delay is done. We now will try to get the water into the ground. so subtract water lvl
             {
                 //Debug.Log("runoff = " + runoff);
-                if (!(runoff >= infiltration)) {
+                if (!(runoff >= infiltration)) {//is the runoff less than infiltration
                     //AdjustWaterLevel(-.0001f); //make the water lvl go down since it is soaking up into the "earth". the math in the denominator is to slow down the decrease
                     AdjustWaterLevel(-2f*rain); //make the water lvl go down since it is soaking up into the "earth". the math in the denominator is to slow down the decrease
                 }
@@ -78,30 +73,44 @@ public class Infiltration : MonoBehaviour
                 }
 
                 Debug.Log("ww this.gameObject.transform.localPosition.y " + this.gameObject.transform.localPosition.y);
-                //need to check if the water is past the "ground" to be considered runoff WRONG! runoff is seen what it cross over infiltration
-                //if (this.gameObject.transform.localPosition.y >= waterSurfaceLevel)
-               // {
+
                     Debug.Log("ww Runoff " + runoff);
+                if (runoff <= (startInifiltration - 1f))
+               {
                     runoff += decreaseAmount;
-                //}
+                }
+                
             }
 
      
             if(runoff >= infiltration)
             {
-                if (doOnceRunoffFlag) //reset the water ONCE! WHY??
-                {
-                    ResetWaterLevel();
-                    //Debug.Log("reset water");
-                    doOnceRunoffFlag = false;
-                }
                 AdjustWaterLevel(speedOfRunoff);
             }
 
         }
-        else //not raining
+        else if(!RainInfo.GetComponent<UrbanEnvironment>().GetIsStormHappening()) //not raining
         {
-            //delayAmount = startDelayAmount;
+            if (infiltration <=startInifiltration)
+            {
+                infiltration += decreaseAmount + (decreaseAmount/2);
+                AdjustWaterLevel(-3f * rain); //make the water lvl go down since it is soaking up into the "earth". the math in the denominator is to slow down the decrease
+                Debug.Log("qwe infiltration is " + infiltration + " startInifiltration " + startInifiltration);
+            }
+            else
+            {
+                ResetWaterLevel();
+            }
+            if (runoff > 0f)
+            {
+                runoff -= decreaseAmount;
+
+            }
+            else
+            {
+                runoff = 0.0f;
+            }
+
         }
 
     }
@@ -112,17 +121,10 @@ public class Infiltration : MonoBehaviour
      */
     void AdjustWaterLevel(float amount)
     {
+        Debug.Log("ADJUST WATER minLevelOfWater " + minLevelOfWater);
         if (this.gameObject.transform.localPosition.y >= minLevelOfWater) {
             Vector3 newPos = new Vector3(this.transform.localPosition.x, this.transform.localPosition.y + (rain + amount), this.transform.localPosition.z);
             gameObject.transform.localPosition = newPos;
-            //Debug.Log("qw  AdjustWaterLevel = " + this.gameObject.transform.localPosition.y);
-
-            //if amount is negative then decrease infiltration since the water is going down
-            if (amount < 0.0f)
-            {
-                infiltration -= decreaseAmount;
-
-            }
 
         }
 
@@ -138,10 +140,6 @@ public class Infiltration : MonoBehaviour
         return infiltration;
     }
 
-    public float GetCurrentWaterStorageAmount()
-    {
-        return currentWaterStorageAmount;
-    }
 
     public float GetRunoff()
     {
