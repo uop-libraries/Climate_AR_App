@@ -16,7 +16,7 @@ public class Infiltration : MonoBehaviour
     //public float waterStorageDecrementAmount; //remove?
 
     public float infiltration; //how much the ground can soak up over a certain time. 
-    public float infiltrationDecreaseAmount; //used for debugging
+    public float decreaseAmount; //used for debugging
     public float waterStorageAmount; //the total water storage amount before the soil cannont hold anymore water. think if this has the MAX size. 
     public float delayTime; //used to simulate when the initial rainfall hits the ground and soaks up. a rich soil will have a low delay time. (initial infiltration )
     public float maxWaterLevel; //the limit of how high the water will go before flooding into the ocean etc
@@ -25,9 +25,9 @@ public class Infiltration : MonoBehaviour
     private float startDelayAmount;
     private float currentWaterStorageAmount;
     private Ground theGround;
-    private float runoff;
+    public float runoff;
     private float minLevelOfWater; //used to stop the water level from going "deep" below the ground.
-    private bool doOnceFlag; //used for runoff
+    private bool doOnceRunoffFlag; //used for runoff
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +39,7 @@ public class Infiltration : MonoBehaviour
         runoff = 0.0f;
         minLevelOfWater = this.transform.localPosition.y;
         Debug.Log("currentWaterStorageAmount = " + currentWaterStorageAmount);
-        doOnceFlag = true;
+        doOnceRunoffFlag = true;
     }
 
     // Update is called once per frame
@@ -64,45 +64,29 @@ public class Infiltration : MonoBehaviour
             {
                 Debug.Log("runoff = " + runoff);
                 if (!(runoff >= infiltration)) {
-                    AdjustWaterLevel(-infiltrationDecreaseAmount/5f); //make the water lvl go down since it is soaking up into the "earth"
+                    //AdjustWaterLevel(-.0001f); //make the water lvl go down since it is soaking up into the "earth". the math in the denominator is to slow down the decrease
+                    AdjustWaterLevel(-2f*rain); //make the water lvl go down since it is soaking up into the "earth". the math in the denominator is to slow down the decrease
                 }
-                //infiltration -= Mathf.Log(infiltrationDecreaseAmount, .5f);
-                //runoff += Mathf.Sqrt(infiltration); //trying to match the ref image above
                 if (infiltration > 0f)
                 {
-                    infiltration -= infiltrationDecreaseAmount;
+                    infiltration -= decreaseAmount;
 
                 }
                 else
                 {
                     infiltration = 0;
                 }
-                runoff += infiltrationDecreaseAmount;
-                
-                /**
-                //the water will continue to subtract until water storage is met. not sure if that is whats going on.....
-                AdjustWaterLevel(theGround.infiltrationAmountOverTime);
-                //Debug.Log("qw inside else if after delay time is done  "  + !Mathf.Approximately(currentWaterStorageAmount, 0.00000000000000000f));
-                currentWaterStorageAmount -= waterStorageDecrementAmount; //simulate the storage amount filling up
-                if (!(currentWaterStorageAmount > 0f))
-                {
-                    currentWaterStorageAmount = 0f; //this will cause the code to exit out of this else block
-                }
-                //Debug.Log("qw currentWaterStorageAmount this.gameObject.transform.localPosition .y = " + this.gameObject.transform.localPosition.y);
-                Debug.Log("qw currentWaterStorageAmount = " + currentWaterStorageAmount);
-
-                //if (currentWaterStorageAmount <= currentWaterStorageAmount/2f)//get the runoff chart to start climbing because the storage is going away
-                 */
-
-
+                runoff += decreaseAmount;
             }
+
      
             if(runoff >= infiltration)
             {
-                if (doOnceFlag) //reset the water ONCE!
+                if (doOnceRunoffFlag) //reset the water ONCE! WHY??
                 {
                     ResetWaterLevel();
-                    doOnceFlag = false;
+                    Debug.Log("reset water");
+                    doOnceRunoffFlag = false;
                 }
                 AdjustWaterLevel(speedOfRunoff);
             }
@@ -127,10 +111,7 @@ public class Infiltration : MonoBehaviour
             Debug.Log("qw  AdjustWaterLevel = " + this.gameObject.transform.localPosition.y);
 
         }
-        else
-        {
-            ResetWaterLevel();
-        }
+
     }
     void ResetWaterLevel()
     {
