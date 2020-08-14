@@ -10,6 +10,8 @@ public class PopUpHandler : MonoBehaviour
 {
     public GameObject POIsParent;
     public GameObject popUp; //the pop up for the user to read
+    public Text outOfNum;
+    public GameObject contentText;
     public Scrollbar scroll;
     public Button CustomButton; //drag-n-drop the button in the CustomButton field   
     int currentPOIIndex = 0; //the order of POI's are determined by their position in the hirearchy
@@ -28,6 +30,7 @@ public class PopUpHandler : MonoBehaviour
         HideAllPOIs();
         ShowPOIAtIndex(currentPOIIndex); //start with the first POI
         Debug.Log("the number of POIs is " + allPOIs.Count);
+        outOfNum.text = currentPOIIndex.ToString() + " out of " + allPOIs.Count;
     }
 
 
@@ -53,7 +56,6 @@ public class PopUpHandler : MonoBehaviour
         {
             allPOIs[index].SetActive(true);
             CustomButton.GetComponentInChildren<Text>().text = allPOIs[index].GetComponentInChildren<InfoPopUp>().textForButton; //set the button text
-            scroll.value = 1f;
         }
         else
         {
@@ -82,10 +84,10 @@ public class PopUpHandler : MonoBehaviour
         HidePOIAtIndex(currentPOIIndex); //hide the current viewed POI. 
         currentPOIIndex++;
         ShowPOIAtIndex(currentPOIIndex); //show the next POI to go to       
-
+        outOfNum.text = currentPOIIndex.ToString() + " out of " + allPOIs.Count;
     }
 
-  
+
     /**
      * called by the button that is clicked to end the speical event and continue looking at the POI's
      */
@@ -98,5 +100,10 @@ public class PopUpHandler : MonoBehaviour
     public void PlayButtonSound()
     {
         this.GetComponent<AudioSource>().Play();
+    }
+
+    public void ResetTextPosition()
+    {
+        contentText.transform.localPosition = new Vector3(contentText.transform.localPosition.x, 0f, contentText.transform.localPosition.z);
     }
 }

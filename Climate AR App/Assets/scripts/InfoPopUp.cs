@@ -7,14 +7,14 @@ public class InfoPopUp : MonoBehaviour
 {
     public GameObject popUp; //the pop up for the user to read
     public Text popUptext;
-    public GameObject PopUPGMl;
+    public GameObject PopUPGM;
     public bool specialEventPOI;
     public string textForButton; //what the button will say "continue" "close" "start" etc
     public GameObject specialEvent;
     // Start is called before the first frame update
     void Start()
     {
-
+        HideSpecialEvent();
     }
 
     public void OnTriggerEnter(Collider other)
@@ -25,6 +25,7 @@ public class InfoPopUp : MonoBehaviour
             {
                 popUp.SetActive(true);
                 popUptext.text = GetComponent<Text>().text;
+                PopUPGM.GetComponent<PopUpHandler>().ResetTextPosition();
             }
             else //special event time
             {
