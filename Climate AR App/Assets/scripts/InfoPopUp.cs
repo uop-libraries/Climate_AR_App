@@ -14,7 +14,7 @@ public class InfoPopUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        HideSpecialEvent();
+        //HideSpecialEvent();
     }
 
     public void OnTriggerEnter(Collider other)
