@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 using ChartAndGraph;
 
-public class StreamingGraph : MonoBehaviour
+public class StreamingGraphHyrdo : MonoBehaviour
 {
     public GraphChart Graph;
     public int TotalPoints = 5;
