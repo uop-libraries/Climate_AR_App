@@ -5,10 +5,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class HydroGrahData : MonoBehaviour
+public class HydroGraphDataRain : MonoBehaviour
 {
     public GraphChart Graph;
-    public int TotalPoints = 0;
     float lastTime = 0f;
     float lastX = 0f;
     float waterLimit = 3f;
@@ -37,18 +36,18 @@ public class HydroGrahData : MonoBehaviour
         Debug.Log("waterLevelYValue is " + waterLevelYValue);
         if (lastTime + 1f < time)
         {
+            lastTime = time;
             waterLevelXValue += waterAddAmount;
 
             if (!rainIsPeaked) //increase graph
             {
-                lastTime = time;
                 float tempWaterLevelYValue = Random.Range(waterLevelYValue, (waterLevelYValue + waterAddAmount));
                 if (tempWaterLevelYValue <= waterLimit && tempWaterLevelYValue > 0f)
                 {
                     waterLevelYValue = tempWaterLevelYValue;
                     Graph.DataSource.AddPointToCategoryRealtime("Player 1", waterLevelXValue, waterLevelYValue, 1f); // each time we call AddPointToCategory
                 }
-                if (Math.Abs(tempWaterLevelYValue - waterLimit) <= .5f)
+                if (Math.Abs(waterLevelYValue - waterLimit) <= .5f)
                 {
                     rainIsPeaked = true;
                 }
@@ -71,5 +70,10 @@ public class HydroGrahData : MonoBehaviour
           
             }
         }
+    }
+
+    public bool GetRainPeakedBool()
+    {
+        return rainIsPeaked;
     }
 }
