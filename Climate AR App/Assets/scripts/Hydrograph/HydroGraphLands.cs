@@ -44,7 +44,8 @@ public class HydroGraphLands : MonoBehaviour
 
     // Update is called once per frame
     /*handles the increase, flatline and decreasing of the hyrograph for lands. 
-     * 
+     * keeps the graph flatlining until the rain is peaked and the graphs start their logic to increase
+     * checks to see if the start park graph timer is done.     * 
      */
     void Update()
     {          
@@ -69,6 +70,18 @@ public class HydroGraphLands : MonoBehaviour
 
     }
 
+    /**
+     * Handles the graphing for the flow of water from the city land.
+     * once the peak of rain its, then is graph starts to increase, then flatline, and then decrease
+     * 
+     * the graph increases at a postive random number until the max is reached
+     * the max is reached when the abs difference between the y value and the max is small
+     * 
+     * when the max is reached, then the graph flatlines for a certain time determined by a timer
+     * 
+     * then the graph decreases by a lower postive random number. 
+     * 
+     */
     void cityLand(float xValue)
     {
  
@@ -114,6 +127,18 @@ public class HydroGraphLands : MonoBehaviour
 
     }
 
+    /**
+     * Handles the graphing for the flow of water from the park land.
+     * Once the peak of rain is hit and the timer to start park land graph is reached this code starts the increase of the graph until it flatlines and then decreases.
+     * 
+     * if the parkland is peaked (hasn't reached its max point) and if the timer to start the park graph is done
+     * then start the increase of the graph. the slope of the graph is determined by a random postive number and then a float is subtracted to get the less steep slope
+     * 
+     * the graph reaches its max when the abs difference between the current Y value and the max value is small
+     * once the graph reaches its max, then the graph flatlines a litte bit (determined by a timer)
+     * 
+     * then the graph will decrease down at a random postive lower number.
+     */
     void parkLand(float xValue)  
     {
             float time = Time.time;
@@ -157,15 +182,14 @@ public class HydroGraphLands : MonoBehaviour
                     }
 
                 }
-       
-
-            //oldParkYValue = parkYValue;
              }
-             else if(!startParkGraph)
+             else if(!startParkGraph) //keep graphing the line, even if its flatlining
              {
                   Graph.DataSource.AddPointToCategoryRealtime("Park Land", parkXValue, parkYValue, 1f); // each time we call AddPointToCategory 
 
-               }
+             }
+
+        //Debug.Log("parkYValue is = " + parkYValue);
 
     }
 }
