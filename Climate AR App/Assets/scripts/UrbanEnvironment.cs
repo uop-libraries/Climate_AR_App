@@ -8,16 +8,17 @@ public class UrbanEnvironment : MonoBehaviour
     public GameObject clouds;
     public GameObject rainStorm;
     public GameObject rainSound;
+    public GameObject rainGraphInfo;
 
     //public float riverRaiseSpeed;
     //public float riverExpanseAmount;
-    public float RainFallAmountOverTime; //how much rain is predicted per a time interval
+    //public float RainFallAmountOverTime; //how much rain is predicted per a time interval
     
 
     private bool stormHappening;
     private float expandSize = .01f;
     private float sizeLimit = 2.4f;
-    private float totalRainFallAmount; //running total of the total rain fall, if there is no rain, then this amount slowly decreases...
+   // private float totalRainFallAmount; //running total of the total rain fall, if there is no rain, then this amount slowly decreases...
 
 
     // Start is called before the first frame update
@@ -38,9 +39,10 @@ public class UrbanEnvironment : MonoBehaviour
             if (clouds.transform.localScale.z < sizeLimit) {
                 clouds.transform.localScale = new Vector3(currentScale.x + expandSize, currentScale.y + expandSize, currentScale.z + expandSize);
             }
-            if (true) {
-                Debug.Log("totalRainFallAmount " + totalRainFallAmount);
-                totalRainFallAmount += RainFallAmountOverTime;
+            if (rainGraphInfo.GetComponent<HydroGraphDataRain>().GetRainPeakedBool()) {
+                //since the rain is peaked, stop the storm.
+                stormHappening = false;
+                
             }
         }
         else if (!stormHappening) // remove/shrink the clouds
@@ -49,15 +51,14 @@ public class UrbanEnvironment : MonoBehaviour
             {
                 clouds.transform.localScale = new Vector3(currentScale.x - expandSize, currentScale.y - expandSize, currentScale.z - expandSize);
             }
-            if (totalRainFallAmount > 0.0f)
-            {
-                Debug.Log("totalRainFallAmount " + totalRainFallAmount);
-                totalRainFallAmount -= RainFallAmountOverTime;
-            }
+
         }
     }
 
-    public void StartStorm(bool isRaising)
+    /**
+     * called by UI button
+     */
+    public void StartStorm()
     {
         Debug.Log("start storm button clicked ");
         clouds.SetActive(true);
@@ -65,18 +66,13 @@ public class UrbanEnvironment : MonoBehaviour
         rainStorm.SetActive(true);
         rainSound.GetComponent<EnviroAudioSource>().StartRainSound();
         rainSound.GetComponent<EnviroAudioSource>().playOnStart = true;
-        //Vector3 currentPosition = cityWater.transform.position;
-        //Vector3 currentScale = cityWater.transform.localScale;
-        if (isRaising)
-        {
-          //  cityWater.transform.position = new Vector3(currentPosition.x, currentPosition.y+riverRaiseSpeed, currentPosition.z);
-            //cityWater.transform.localScale = new Vector3(currentScale.x + riverExpanseAmount, currentScale.y, currentScale.z);
 
-            //  transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-
-        }
     }
 
+    /**
+    * called by UI button
+    * going to not have the end storm button for now. want to focus on an MVP!
+    */
     public void EndStorm()
     {
         Debug.Log("end storm button clicked");
@@ -87,10 +83,10 @@ public class UrbanEnvironment : MonoBehaviour
 
     }
 
-    public float GetTotalRainFallAmount()
-    {
-        return totalRainFallAmount;
-    }
+   // public float GetTotalRainFallAmount()
+    //{
+   //     return totalRainFallAmount;
+    //}
 
     public bool GetIsStormHappening()
     {
