@@ -30,7 +30,7 @@ public class Infiltration : MonoBehaviour
     {
         startInifiltration = infiltration;
         //theGround = ground.GetComponent<Ground>();
-        rain = RainInfo.GetComponent<UrbanEnvironment>().RainFallAmountOverTime; //get the amount of rain accumilating, this number increases when its raining and decreases till 0 when not raining
+        //rain = RainInfo.GetComponent<UrbanEnvironment>().RainFallAmountOverTime; //get the amount of rain accumilating, this number increases when its raining and decreases till 0 when not raining
         startDelayAmount = delayTime;
         //groundStartingPoint = this.gameObject.transform.localPosition.y; //get the start of the water
         runoff = 0.0f;
