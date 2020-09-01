@@ -27,5 +27,9 @@ namespace ChartAndGraph
         /// format the labels as date and time
         /// </summary>
         DateTime,
+        Blank,
+        /// <summary>
+        /// blank KC
+        /// </summary>
     }
 }

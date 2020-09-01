@@ -253,6 +253,7 @@ namespace ChartAndGraph
                     {
                         if (mFormats.TryGetValue(val, out toSet) == false)
                         {
+     
                             if (format == AxisFormat.Number)
                                 toSet = ChartAdancedSettings.Instance.FormatFractionDigits(info.FractionDigits, val, parent.CustomNumberFormat);
                             else
@@ -272,6 +273,8 @@ namespace ChartAndGraph
                             mFormats[val] = toSet;
                             
                         }
+                        if (format == AxisFormat.Blank) //KC
+                            toSet = " "; //I added this into the code to have the Axis blank so I can manually add abstract labels
                     }
                     else
                     {

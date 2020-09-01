@@ -9,6 +9,7 @@ public class HydroGraphDataRain : MonoBehaviour
 {
     public GraphChart Graph;
     public float waterLimit = 3f;
+    [Tooltip("increase to speed up the graph")]
     public float waterAddAmount = .5f;
     public int waterPeakFlatlineTime = 10;
     float lastTime = 0f; 
