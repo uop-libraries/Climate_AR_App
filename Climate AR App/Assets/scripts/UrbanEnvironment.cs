@@ -25,7 +25,6 @@ public class UrbanEnvironment : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         clouds.SetActive(false);
         rainStorm.SetActive(false);
         //rainSound.SetActive(false);
@@ -62,11 +61,12 @@ public class UrbanEnvironment : MonoBehaviour
             {
                 clouds.transform.localScale = new Vector3(currentScale.x - expandSize, currentScale.y - expandSize, currentScale.z - expandSize);
             }
-            if(!toggleWaterAnim && graphInfo.GetComponent<HydroGraphLands>().getCityLandIsPeaked())
+            if(!toggleWaterAnim && graphInfo.GetComponent<HydroGraphLands>().getCityLandIsDecreasing())
             {
                 for (int i = 0; i < animations.Count; i++)
                 {
-                    animations[i].GetComponent<Animator>().SetBool("StartRiverIncrease", false); //start the animation, the string value is a parameter from the animator window
+                   animations[i].GetComponent<Animator>().SetBool("StartRiverIncrease", false); //start the animation, the string value is a parameter from the animator window
+                    
                 }
                 toggleWaterAnim = true;
             }
@@ -93,6 +93,8 @@ public class UrbanEnvironment : MonoBehaviour
 
     }
 
+
+
     /**
     * called by UI button
     * going to not have the end storm button for now. want to focus on an MVP!
@@ -116,4 +118,5 @@ public class UrbanEnvironment : MonoBehaviour
     {
         return stormHappening;
     }
+
 }

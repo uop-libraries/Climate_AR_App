@@ -18,6 +18,7 @@ public class HydroGraphLands : MonoBehaviour
     float cityYValue = .1f;
     bool cityIsPeaked = false;
     float tempCityLevelYValue = .5f;
+    bool cityLandIsDecreasing = false;
 
     //------*park vars*------
     public int parkLineFlatlineTime = 2;
@@ -28,6 +29,7 @@ public class HydroGraphLands : MonoBehaviour
     float parkYValue = .1f;
     bool parkIsPeaked = false;
     float tempParkLevelYValue = .5f;
+    bool parkLandIsDecreasing = false;
     // Start is called before the first frame update
     //float oldParkYValue = 0f;
     bool startParkGraph = false;
@@ -116,6 +118,7 @@ public class HydroGraphLands : MonoBehaviour
                 }
                 else if (cityYValue - cityLandIncrease >= 0f) //decrease graph
                 {
+                cityLandIsDecreasing = true;
                 tempCityLevelYValue = Random.Range(cityYValue - cityLandIncrease, cityYValue); //want some variation to the graph
                 //tempCityLevelYValue -= cityLandIncrease;
                     if (tempCityLevelYValue >= 0f)
@@ -177,6 +180,7 @@ public class HydroGraphLands : MonoBehaviour
                 }
                 else if (parkYValue - parkLandIncrease >= 0f && parkIsPeaked) //decrease graph
                 {
+                parkLandIsDecreasing = true;
                 tempParkLevelYValue = Random.Range(parkYValue - parkLandIncrease, parkYValue); //want some variation to the graph
                 //tempParkLevelYValue -= parkLandIncrease;
                     if (tempParkLevelYValue >= 0f)
@@ -205,5 +209,20 @@ public class HydroGraphLands : MonoBehaviour
     public bool getCityLandIsPeaked()
     {
         return cityIsPeaked;
+    }
+
+    public bool getParkLandIsPeaked()
+    {
+        return parkIsPeaked;
+    }
+
+    public bool getParkLandIsDecreasing()
+    {
+        return parkLandIsDecreasing;
+    }
+
+    public bool getCityLandIsDecreasing()
+    {
+        return cityLandIsDecreasing;
     }
 }
