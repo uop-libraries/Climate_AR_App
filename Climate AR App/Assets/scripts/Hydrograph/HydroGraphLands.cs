@@ -31,6 +31,8 @@ public class HydroGraphLands : MonoBehaviour
     // Start is called before the first frame update
     //float oldParkYValue = 0f;
     bool startParkGraph = false;
+    bool startGraph = false; //starting all of the graphs
+
     void Start()
     {
         if (Graph == null) // the ChartGraph info is obtained via the inspector
@@ -48,26 +50,28 @@ public class HydroGraphLands : MonoBehaviour
      * checks to see if the start park graph timer is done.     * 
      */
     void Update()
-    {          
-        cityXValue = this.GetComponent<HydroGraphDataRain>().GetWaterLevelXValue();
-        parkXValue = this.GetComponent<HydroGraphDataRain>().GetWaterLevelXValue();
-        if (this.GetComponent<HydroGraphDataRain>().GetRainPeakedBool()) //rain is peaked, start the increase of the river flow increase
+    {
+        if (startGraph)
         {
-            cityLand(cityXValue);
-            parkLand(parkXValue);
-        }
-        else //the start flatlining of the river flow
-        {
+            cityXValue = this.GetComponent<HydroGraphDataRain>().GetWaterLevelXValue();
+            parkXValue = this.GetComponent<HydroGraphDataRain>().GetWaterLevelXValue();
+            if (this.GetComponent<HydroGraphDataRain>().GetRainPeakedBool()) //rain is peaked, start the increase of the river flow increase
+            {
+                cityLand(cityXValue);
+                parkLand(parkXValue);
+            }
+            else //the start flatlining of the river flow
+            {
 
-            Graph.DataSource.AddPointToCategoryRealtime("City Land", cityXValue, cityYValue, 1f); // each time we call AddPointToCategory
-            Graph.DataSource.AddPointToCategoryRealtime("Park Land", parkXValue, parkYValue, 1f); // each time we call AddPointToCategory
-        }
+                Graph.DataSource.AddPointToCategoryRealtime("City Land", cityXValue, cityYValue, 1f); // each time we call AddPointToCategory
+                Graph.DataSource.AddPointToCategoryRealtime("Park Land", parkXValue, parkYValue, 1f); // each time we call AddPointToCategory
+            }
 
-        if (parkTimer  >= parkLandDelayTimerLimit)
-        {
-            startParkGraph = true;
+            if (parkTimer >= parkLandDelayTimerLimit)
+            {
+                startParkGraph = true;
+            }
         }
-
     }
 
     /**
@@ -191,5 +195,15 @@ public class HydroGraphLands : MonoBehaviour
 
         //Debug.Log("parkYValue is = " + parkYValue);
 
+    }
+
+    public void setStartGraph(bool value)
+    {
+        startGraph = value;
+    }
+
+    public bool getCityLandIsPeaked()
+    {
+        return cityIsPeaked;
     }
 }

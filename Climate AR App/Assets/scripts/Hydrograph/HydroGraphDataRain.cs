@@ -16,6 +16,8 @@ public class HydroGraphDataRain : MonoBehaviour
     float waterLevelXValue = 0f;
     float waterLevelYValue = 0f;
     bool rainIsPeaked = false;
+    bool rainIsDecreasing = false;
+    bool startGraph = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +37,7 @@ public class HydroGraphDataRain : MonoBehaviour
     {
         float time = Time.time;
         Debug.Log("waterLevelYValue is " + waterLevelYValue);
-        if (lastTime + 1f < time)
+        if (lastTime + 1f < time && startGraph)
         {
             lastTime = time;
             waterLevelXValue += waterAddAmount;
@@ -61,6 +63,7 @@ public class HydroGraphDataRain : MonoBehaviour
             }
             else if (waterLevelYValue - waterAddAmount >= 0f) //decrease graph
             {
+                rainIsDecreasing = true;
                 Debug.Log("waterlevel is bigger thans 0");
                 float tempWaterLevelYValue = Random.Range(waterLevelYValue - waterAddAmount, waterLevelYValue); //want some variation to the graph
                 if (tempWaterLevelYValue > 0f)
@@ -86,5 +89,14 @@ public class HydroGraphDataRain : MonoBehaviour
     public float GetWaterLevelYValue()
     {
         return waterLevelYValue;
+    }
+
+    public bool getRainIsDecreasing()
+    {
+        return rainIsDecreasing;
+    }
+    public void setStartGraph(bool value)
+    {
+        startGraph = value;
     }
 }
