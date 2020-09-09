@@ -9,6 +9,7 @@ public class UrbanEnvironment : MonoBehaviour
     public GameObject rainStorm;
     public GameObject rainSound;
     public GameObject graphInfo;
+    public GameObject drainage;
     public List<GameObject> animations;
 
     //public float riverRaiseSpeed;
@@ -27,6 +28,7 @@ public class UrbanEnvironment : MonoBehaviour
     {
         clouds.SetActive(false);
         rainStorm.SetActive(false);
+        drainage.SetActive(false);
         //rainSound.SetActive(false);
     }
 
@@ -106,12 +108,13 @@ public class UrbanEnvironment : MonoBehaviour
        rainStorm.SetActive(false);
         //rainSound.SetActive(false);
         stormHappening = false;
+        drainage.SetActive(true);
 
     }
 
-   // public float GetTotalRainFallAmount()
+    // public float GetTotalRainFallAmount()
     //{
-   //     return totalRainFallAmount;
+    //     return totalRainFallAmount;
     //}
 
     public bool GetIsStormHappening()
