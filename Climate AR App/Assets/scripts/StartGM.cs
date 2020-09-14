@@ -8,11 +8,13 @@ public class StartGM : MonoBehaviour
     public GameObject welcomePopup;
     public GameObject bubbles;
     public GameObject POIs;
+    public GameObject sounds;
     void Start()
     {
         welcomePopup.SetActive(true);
         bubbles.SetActive(false);
         POIs.SetActive(false);
+        sounds.SetActive(false);
 
     }
 
@@ -21,5 +23,10 @@ public class StartGM : MonoBehaviour
         welcomePopup.SetActive(false);
         POIs.SetActive(true);
 
+    }
+
+    public void StartSounds()
+    {
+        sounds.SetActive(true);
     }
 }

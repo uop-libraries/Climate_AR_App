@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Vuforia;
 public class InfoPopUp : MonoBehaviour
 {
     public GameObject popUp; //the pop up for the user to read
@@ -11,6 +11,7 @@ public class InfoPopUp : MonoBehaviour
     public bool specialEventPOI;
     public string textForButton; //what the button will say "continue" "close" "start" etc
     public GameObject specialEvent;
+    public GameObject planeFinder;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,12 +27,16 @@ public class InfoPopUp : MonoBehaviour
                 popUp.SetActive(true);
                 popUptext.text = GetComponent<Text>().text;
                 PopUPGM.GetComponent<PopUpHandler>().ResetTextPosition();
+                planeFinder.GetComponent<AnchorInputListenerBehaviour>().enabled = false;
+
             }
             else //special event time
             {
                 specialEvent.SetActive(true);
+                planeFinder.GetComponent<AnchorInputListenerBehaviour>().enabled = true;
+
             }
-            
+
         }
     }
 
