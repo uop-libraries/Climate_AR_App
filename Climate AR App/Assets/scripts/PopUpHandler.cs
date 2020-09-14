@@ -14,6 +14,7 @@ public class PopUpHandler : MonoBehaviour
     public GameObject contentText;
     public Scrollbar scroll;
     public Button CustomButton; //drag-n-drop the button in the CustomButton field   
+    public GameObject ARCamera;
     int currentPOIIndex = 0; //the order of POI's are determined by their position in the hirearchy
     List<GameObject> allPOIs = new List<GameObject>();
     float saveTextPosition;
@@ -79,7 +80,7 @@ public class PopUpHandler : MonoBehaviour
     //Handle the onClick event
     void CustomButton_onClick()
     {
-        Debug.Log("test close button");
+        //Debug.Log("test close button");
         PlayButtonSound();
         HidePOIAtIndex(currentPOIIndex); //hide the current viewed POI. 
         currentPOIIndex++;
@@ -102,8 +103,17 @@ public class PopUpHandler : MonoBehaviour
         this.GetComponent<AudioSource>().Play();
     }
 
+    /**
+     * handles reseting the text position of the text
+     */
     public void ResetTextPosition()
     {
         contentText.transform.localPosition = new Vector3(contentText.transform.localPosition.x, 0f, contentText.transform.localPosition.z);
+    }
+
+    public void AdjustARCameraColliderRadius(float radius)
+    {
+        SphereCollider colliderCamera = ARCamera.GetComponent<SphereCollider>();
+        colliderCamera.radius = radius;
     }
 }
