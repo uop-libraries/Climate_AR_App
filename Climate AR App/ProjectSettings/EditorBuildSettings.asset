@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TestScenes/tes1-Human AI.unity
     guid: 799b6d25a7c989f4c849b550bbee3f3a
   - enabled: 1
+    path: Assets/Scenes/argiculture.unity
+    guid: 1caa60f9883c8b646b665cfb19c243eb
+  - enabled: 1
     path: Assets/Scenes/urban.unity
     guid: 1bedf7c335de06944827cf241385046a
   - enabled: 1
