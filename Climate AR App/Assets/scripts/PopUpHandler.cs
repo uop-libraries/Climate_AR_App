@@ -111,9 +111,5 @@ public class PopUpHandler : MonoBehaviour
         contentText.transform.localPosition = new Vector3(contentText.transform.localPosition.x, 0f, contentText.transform.localPosition.z);
     }
 
-    public void AdjustARCameraColliderRadius(float radius)
-    {
-        SphereCollider colliderCamera = ARCamera.GetComponent<SphereCollider>();
-        colliderCamera.radius = radius;
-    }
+
 }

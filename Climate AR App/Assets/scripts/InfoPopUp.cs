@@ -12,10 +12,13 @@ public class InfoPopUp : MonoBehaviour
     public string textForButton; //what the button will say "continue" "close" "start" etc
     public GameObject specialEvent;
     public GameObject planeFinder;
-    public float cameraColliderRadius;
+    public float ColliderRadius;
     // Start is called before the first frame update
-    void Start()
+    void Awake() //want the radius of the collider set before they are set active
     {
+        //instead of adjusting the camera's collider lets try it with the POI
+        CapsuleCollider TriggerCollider = this.GetComponent<CapsuleCollider>();
+        TriggerCollider.radius = ColliderRadius;
         //HideSpecialEvent();
     }
 
@@ -25,8 +28,7 @@ public class InfoPopUp : MonoBehaviour
         {
             if (!specialEventPOI)
             {
-                PopUPGM.GetComponent<PopUpHandler>().AdjustARCameraColliderRadius(cameraColliderRadius);
-                popUp.SetActive(true);
+                popUp.SetActive(true);   
                 popUptext.text = GetComponent<Text>().text;
                 PopUPGM.GetComponent<PopUpHandler>().ResetTextPosition();
                 planeFinder.GetComponent<AnchorInputListenerBehaviour>().enabled = false;
@@ -36,7 +38,6 @@ public class InfoPopUp : MonoBehaviour
             {
                 specialEvent.SetActive(true);
                 planeFinder.GetComponent<AnchorInputListenerBehaviour>().enabled = true;
-                PopUPGM.GetComponent<PopUpHandler>().AdjustARCameraColliderRadius(cameraColliderRadius);
 
             }
 
