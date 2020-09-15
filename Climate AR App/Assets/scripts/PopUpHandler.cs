@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /**
@@ -83,6 +84,11 @@ public class PopUpHandler : MonoBehaviour
         //Debug.Log("test close button");
         PlayButtonSound();
         HidePOIAtIndex(currentPOIIndex); //hide the current viewed POI. 
+        if (allPOIs[currentPOIIndex].gameObject.GetComponent<InfoPopUp>().GetLastPOI())
+        {
+            //change scene here
+            SceneManager.LoadScene("mainMenu");
+        }
         currentPOIIndex++;
         ShowPOIAtIndex(currentPOIIndex); //show the next POI to go to       
         outOfNum.text = currentPOIIndex.ToString() + " out of " + allPOIs.Count;
@@ -110,6 +116,7 @@ public class PopUpHandler : MonoBehaviour
     {
         contentText.transform.localPosition = new Vector3(contentText.transform.localPosition.x, 0f, contentText.transform.localPosition.z);
     }
+
 
 
 }

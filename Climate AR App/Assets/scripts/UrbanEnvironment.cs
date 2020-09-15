@@ -10,6 +10,7 @@ public class UrbanEnvironment : MonoBehaviour
     public GameObject rainSound;
     public GameObject graphInfo;
     public GameObject drainage;
+    public GameObject continueButton;
     public List<GameObject> animations;
 
     //public float riverRaiseSpeed;
@@ -29,6 +30,7 @@ public class UrbanEnvironment : MonoBehaviour
         clouds.SetActive(false);
         rainStorm.SetActive(false);
         drainage.SetActive(false);
+        continueButton.SetActive(false);
         //rainSound.SetActive(false);
     }
 
@@ -63,13 +65,14 @@ public class UrbanEnvironment : MonoBehaviour
             {
                 clouds.transform.localScale = new Vector3(currentScale.x - expandSize, currentScale.y - expandSize, currentScale.z - expandSize);
             }
-            if(!toggleWaterAnim && graphInfo.GetComponent<HydroGraphLands>().getCityLandIsDecreasing())
+            if(!toggleWaterAnim && graphInfo.GetComponent<HydroGraphLands>().getCityLandIsDecreasing()) //having this && statement causes issues if the land isnt decreasing... going to hide the continue button until the event is done
             {
                 for (int i = 0; i < animations.Count; i++)
                 {
-                   animations[i].GetComponent<Animator>().SetBool("StartRiverIncrease", false); //start the animation, the string value is a parameter from the animator window
+                   animations[i].GetComponent<Animator>().SetBool("StartRiverIncrease", false); //end the animation, the string value is a parameter from the animator window
                     
                 }
+                continueButton.SetActive(true);
                 toggleWaterAnim = true;
             }
 
@@ -109,6 +112,7 @@ public class UrbanEnvironment : MonoBehaviour
         //rainSound.SetActive(false);
         stormHappening = false;
         drainage.SetActive(true);
+
 
     }
 

@@ -14,6 +14,7 @@ public class StartGM : MonoBehaviour
     public GameObject bubbles;
     public GameObject POIs;
     public GameObject sounds;
+    bool doOnceFlag; //used to show instructions once at the start of the scene.
     void Start()
     {
         welcomePopup.SetActive(true);
@@ -21,7 +22,7 @@ public class StartGM : MonoBehaviour
         POIs.SetActive(false);
         sounds.SetActive(false);
         instructionsForPOI.SetActive(false);
-
+        doOnceFlag = true;
     }
 
     /**close the welcome text
@@ -38,7 +39,11 @@ public class StartGM : MonoBehaviour
      */
     public void OpenInstructionsForPOI()
     {
-        instructionsForPOI.SetActive(true);
+        if (doOnceFlag)
+        {
+            instructionsForPOI.SetActive(true);
+            doOnceFlag = false;
+        }
     }
 
     /**close the instructions for the POIs and activate the POIs

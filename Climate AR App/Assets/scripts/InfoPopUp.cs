@@ -13,6 +13,7 @@ public class InfoPopUp : MonoBehaviour
     public GameObject specialEvent;
     public GameObject planeFinder;
     public float ColliderRadius;
+    public bool lastPOI; //on the inspector, set true if it is the last POI and you want to bring user to main menu
     // Start is called before the first frame update
     void Awake() //want the radius of the collider set before they are set active
     {
@@ -51,6 +52,11 @@ public class InfoPopUp : MonoBehaviour
             specialEvent.SetActive(false);
 
         }
+    }
+
+    public bool GetLastPOI()
+    {
+        return lastPOI;
     }
 
 
