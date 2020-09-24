@@ -13,14 +13,16 @@ public class StartGM : MonoBehaviour
     public GameObject instructionsForPOI;
     public GameObject bubbles;
     public GameObject POIs;
-    public GameObject sounds;
     bool doOnceFlag; //used to show instructions once at the start of the scene.
     void Start()
     {
         welcomePopup.SetActive(true);
-        bubbles.SetActive(false);
+        if (bubbles != null)
+        {
+            bubbles.SetActive(false);
+
+        }
         POIs.SetActive(false);
-        sounds.SetActive(false);
         instructionsForPOI.SetActive(false);
         doOnceFlag = true;
     }
@@ -55,11 +57,5 @@ public class StartGM : MonoBehaviour
         POIs.SetActive(true);
     }
 
-    /**start the sounds in the level
-     * 
-     */
-    public void StartSounds()
-    {
-        sounds.SetActive(true);
-    }
+   
 }

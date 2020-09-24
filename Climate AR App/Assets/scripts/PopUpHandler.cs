@@ -84,7 +84,9 @@ public class PopUpHandler : MonoBehaviour
         //Debug.Log("test close button");
         PlayButtonSound();
         HidePOIAtIndex(currentPOIIndex); //hide the current viewed POI. 
-        if (allPOIs[currentPOIIndex].gameObject.GetComponent<InfoPopUp>().GetLastPOI())
+        Debug.Log("Current POI index is " + currentPOIIndex);
+        Debug.Log("POI object title is " + allPOIs[currentPOIIndex].name);
+        if (allPOIs[currentPOIIndex].gameObject.transform.Find("collider And Text").GetComponent<InfoPopUp>().GetLastPOI())
         {
             //change scene here
             SceneManager.LoadScene("mainMenu");
