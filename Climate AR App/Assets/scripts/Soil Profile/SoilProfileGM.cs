@@ -46,43 +46,27 @@ public class SoilProfileGM : MonoBehaviour
     /**
         * set the top soils health. true show the color be green , false is color being yellow
         */
-    public Material SetTopsoilColor(bool flag)
+    public void SetTopsoilColorToHealthy(bool isHealthy)
     {
         //Debug.Log("is healthySoilCubeScriptHolder active soil " + healthySoilCubeScriptHolder.activeInHierarchy);
-        if (flag && healthySoilCubeScriptHolder.activeInHierarchy) //show healthy soil
+        if (isHealthy) //show healthy soil
         {
-
-            Debug.Log("healthySoilCubeScriptHolder in soil color GM set the topsoil to good");
-            healthySoilCubeScriptHolder.GetComponent<SoilCube>().IsSoilGood(flag);
-            return healthySoilCubeScriptHolder.GetComponent<SoilCube>().GetSoilColor();
+            //Debug.Log("healthySoilCubeScriptHolder in soil color GM set the topsoil to good");
+            healthySoilCubeScriptHolder.GetComponent<SoilCube>().IsSoilGood(isHealthy);
+            unHealthySoilCubeScriptHolder.GetComponent<SoilCube>().IsSoilGood(isHealthy);
+            //return healthySoilCubeScriptHolder.GetComponent<SoilCube>().GetSoilColor();
         }
-        else if(!flag && healthySoilCubeScriptHolder.activeInHierarchy) // hide the soil
+        else  // hide the soil
         {
-
-            Debug.Log("healthySoilCubeScriptHolder in soil color GM set the topsoil to bad");
-            healthySoilCubeScriptHolder.GetComponent<SoilCube>().IsSoilGood(flag);
-            return healthySoilCubeScriptHolder.GetComponent<SoilCube>().GetSoilColor();
-
-
+            //Debug.Log("healthySoilCubeScriptHolder in soil color GM set the topsoil to bad");
+            healthySoilCubeScriptHolder.GetComponent<SoilCube>().IsSoilGood(isHealthy);
+            unHealthySoilCubeScriptHolder.GetComponent<SoilCube>().IsSoilGood(isHealthy);
+            //return healthySoilCubeScriptHolder.GetComponent<SoilCube>().GetSoilColor();
         }
+    }
 
-        if (flag && unHealthySoilCubeScriptHolder.activeInHierarchy) //show healthy soil
-        {
-
-            Debug.Log("unHealthySoilCubeScriptHolder in soil color GM set the topsoil to good");
-            unHealthySoilCubeScriptHolder.GetComponent<SoilCube>().IsSoilGood(flag);
-            return unHealthySoilCubeScriptHolder.GetComponent<SoilCube>().GetSoilColor();
-        }
-        else if (!flag && unHealthySoilCubeScriptHolder.activeInHierarchy) // hide the soil
-        {
-
-            Debug.Log(" unHealthySoilCubeScriptHolder in soil color GM set the topsoil to bad");
-            unHealthySoilCubeScriptHolder.GetComponent<SoilCube>().IsSoilGood(flag);
-            return unHealthySoilCubeScriptHolder.GetComponent<SoilCube>().GetSoilColor();
-
-
-        }
-
-        return null;
+    public Material GetHealthOfSoilCubeColor()
+    {
+        return healthySoilCubeScriptHolder.GetComponent<SoilCube>().GetSoilColor();
     }
 }

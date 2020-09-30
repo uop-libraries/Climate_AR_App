@@ -114,29 +114,37 @@ public class landGM : MonoBehaviour
     public void CoveredSelected()
     {
         isCoveredFlag = !isCoveredFlag;
+        soilProfile = currentSelectedObject.transform.Find(childPathName).gameObject; //get the soil profile color and then use it to set the rest of the soils and lands
+        SetColorOfProfile(isCoveredFlag); //set the color of the profile
+        currentSoilProfileColor = soilProfile.GetComponent<SoilProfileGM>().GetHealthOfSoilCubeColor(); //get the soil profile color to change the land color
+        SetVisabilityOfTreesForAllLands(isCoveredFlag); //set the visability of trees
+        SetColorOfSoilForAllLands(currentSoilProfileColor); //changes the land color
 
-        //Debug.Log("CoveredSelected currentSelectedObject is " + currentSelectedObject.name);
-        soilProfile = currentSelectedObject.transform.Find(childPathName).gameObject;
-        if (soilProfile == null)
-        {
-            Debug.LogError("unable to find child " + childPathName);
-        }
+    }
 
-       // if (isCoveredFlag) // healthy soil 
-       // {
-            //get the script and call function and pass true
-            currentSoilProfileColor = soilProfile.GetComponent<SoilProfileGM>().SetTopsoilColor(isCoveredFlag);
-            Debug.Log("soil profile color is " + currentSoilProfileColor);
-            currentSelectedObject.GetComponent<land>().treesForCover.SetActive(isCoveredFlag);
-            currentSelectedObject.GetComponent<land>().ChangeLandColor(currentSoilProfileColor);
-        //}
-        //else
-        //{
-            //currentSoilProfileColor = soilProfile.GetComponent<SoilProfileGM>().SetTopsoilColor(isCoveredFlag);
-            //Debug.Log("soil profile color is " + currentSoilProfileColor);
-            //currentSelectedObject.GetComponent<land>().treesForCover.SetActive(isCoveredFlag);
-            //currentSelectedObject.GetComponent<land>().ChangeLandColor(currentSoilProfileColor);
+    void SetColorOfProfile(bool isHealthy)
+    {
+        GameObject soilProfileFlat = flatLand.transform.Find(childPathName).gameObject;
+        GameObject soilProfileSlope = slopeLand.transform.Find(childPathName).gameObject;
+        GameObject soilProfileSteepSlope = steepSlopeLand.transform.Find(childPathName).gameObject;
+        soilProfileFlat.GetComponent<SoilProfileGM>().SetTopsoilColorToHealthy(isHealthy); //changes the soil profile color
+        soilProfileSlope.GetComponent<SoilProfileGM>().SetTopsoilColorToHealthy(isHealthy); //changes the soil profile color
+        soilProfileSteepSlope.GetComponent<SoilProfileGM>().SetTopsoilColorToHealthy(isHealthy); //changes the soil profile color
 
-        //}
+    }
+
+    void SetColorOfSoilForAllLands(Material color)
+    {
+        flatLand.GetComponent<land>().ChangeLandColor(color);
+        slopeLand.GetComponent<land>().ChangeLandColor(color);
+        steepSlopeLand.GetComponent<land>().ChangeLandColor(color);
+
+    }
+
+    void SetVisabilityOfTreesForAllLands(bool visability)
+    {
+        flatLand.GetComponent<land>().treesForCover.SetActive(visability);
+        slopeLand.GetComponent<land>().treesForCover.SetActive(visability);
+        steepSlopeLand.GetComponent<land>().treesForCover.SetActive(visability);
     }
 }
