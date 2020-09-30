@@ -34,20 +34,55 @@ public class landGM : MonoBehaviour
 
     public void FlatSelected()
     {
-        flatLand.GetComponent<land>().ToggleIsSelectedLand();
-        currentSelectedObject = flatLand;
+        Debug.Log("flatLand.GetComponent<land>().GetButtonIsOn() " + flatLand.GetComponent<land>().GetButtonIsOn());
+        //need to check if the box is already checked
+        if (flatLand.GetComponent<land>().GetButtonIsOn()) 
+        {
+            Debug.Log("flatland button is not active");
+            flatLand.GetComponent<land>().SetSelectedLandVisabillity(true);
+            currentSelectedObject = flatLand;
+        }
+        else
+        {
+            Debug.Log("flatland button is  active");
+            flatLand.GetComponent<land>().SetSelectedLandVisabillity(false);
+
+        }
+
     }
 
     public void SlopeSelected()
     {
-        slopeLand.GetComponent<land>().ToggleIsSelectedLand();
-        currentSelectedObject = slopeLand;
+        Debug.Log("slopeLand.GetComponent<land>().GetButtonIsOn() " + flatLand.GetComponent<land>().GetButtonIsOn());
+        if (slopeLand.GetComponent<land>().GetButtonIsOn())
+        {
+            Debug.Log("slopeLand button is not active");
+            slopeLand.GetComponent<land>().SetSelectedLandVisabillity(true);
+            currentSelectedObject = slopeLand;
+        }
+        else
+        {
+            slopeLand.GetComponent<land>().SetSelectedLandVisabillity(false);
+            Debug.Log("slopeLand button is  active");
+
+        }
     }
 
     public void SteepSlopeSelected()
     {
-        steepSlopeLand.GetComponent<land>().ToggleIsSelectedLand();
-        currentSelectedObject = steepSlopeLand;
+        Debug.Log("steepSlopeLand.GetComponent<land>().GetButtonIsOn() " + flatLand.GetComponent<land>().GetButtonIsOn());
+        if (steepSlopeLand.GetComponent<land>().GetButtonIsOn())
+        {
+            Debug.Log("steepSlopeLand button is not active");
+            steepSlopeLand.GetComponent<land>().SetSelectedLandVisabillity(true);
+            currentSelectedObject = steepSlopeLand;
+        }
+        else
+        {
+            steepSlopeLand.GetComponent<land>().SetSelectedLandVisabillity(false);
+            Debug.Log("steepSlopeLand button is  active");
+
+        }
     }
 
     public void HealthyTopsoilSelected()
@@ -87,21 +122,21 @@ public class landGM : MonoBehaviour
             Debug.LogError("unable to find child " + childPathName);
         }
 
-        if (isCoveredFlag) // healthy soil 
-        {
+       // if (isCoveredFlag) // healthy soil 
+       // {
             //get the script and call function and pass true
             currentSoilProfileColor = soilProfile.GetComponent<SoilProfileGM>().SetTopsoilColor(isCoveredFlag);
             Debug.Log("soil profile color is " + currentSoilProfileColor);
             currentSelectedObject.GetComponent<land>().treesForCover.SetActive(isCoveredFlag);
             currentSelectedObject.GetComponent<land>().ChangeLandColor(currentSoilProfileColor);
-        }
-        else
-        {
-            currentSoilProfileColor = soilProfile.GetComponent<SoilProfileGM>().SetTopsoilColor(isCoveredFlag);
-            Debug.Log("soil profile color is " + currentSoilProfileColor);
-            currentSelectedObject.GetComponent<land>().treesForCover.SetActive(isCoveredFlag);
-            currentSelectedObject.GetComponent<land>().ChangeLandColor(currentSoilProfileColor);
+        //}
+        //else
+        //{
+            //currentSoilProfileColor = soilProfile.GetComponent<SoilProfileGM>().SetTopsoilColor(isCoveredFlag);
+            //Debug.Log("soil profile color is " + currentSoilProfileColor);
+            //currentSelectedObject.GetComponent<land>().treesForCover.SetActive(isCoveredFlag);
+            //currentSelectedObject.GetComponent<land>().ChangeLandColor(currentSoilProfileColor);
 
-        }
+        //}
     }
 }
