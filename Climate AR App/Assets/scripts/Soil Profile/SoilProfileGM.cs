@@ -10,6 +10,8 @@ public class SoilProfileGM : MonoBehaviour
 {
     public GameObject healthyTopsoil;
     public GameObject unhealthyTopSoil;
+    public GameObject healthySoilCubeScriptHolder;
+    public GameObject unHealthySoilCubeScriptHolder;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,26 @@ public class SoilProfileGM : MonoBehaviour
         {
             unhealthyTopSoil.SetActive(!flag);
             healthyTopsoil.SetActive(flag);
+        }
+    }
+
+    /**
+        * set the top soils health. true show the color be green , false is color being yellow
+        */
+    public void SetTopsoilColor(bool flag)
+    {
+        if (flag) //show healthy soil
+        {
+            //healthyTopsoil.SetActive(flag);
+            //unhealthyTopSoil.SetActive(!flag);
+            healthySoilCubeScriptHolder.GetComponent<SoilCube>().IsSoilGood(flag);
+        }
+        else // hide the soil
+        {
+            //unhealthyTopSoil.SetActive(!flag);
+            //healthyTopsoil.SetActive(flag);
+            healthySoilCubeScriptHolder.GetComponent<SoilCube>().IsSoilGood(!flag);
+
         }
     }
 }

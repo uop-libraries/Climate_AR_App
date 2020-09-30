@@ -809,6 +809,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthyTopsoil: {fileID: 2653307044072332587}
   unhealthyTopSoil: {fileID: 1953693092371006948}
+  healthySoilCubeScriptHolder: {fileID: 6189905066099228901}
+  unHealthySoilCubeScriptHolder: {fileID: 5908149244706966080}
 --- !u!1 &6189905066099228901
 GameObject:
   m_ObjectHideFlags: 0

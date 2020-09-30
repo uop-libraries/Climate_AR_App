@@ -7,11 +7,11 @@ public class landGM : MonoBehaviour
     public GameObject flatLand;
     public GameObject slopeLand;
     public GameObject steepSlopeLand;
-    public GameObject treesForCover;
     public Material goodSoilColor;
     public Material badSoilColor;
 
     private bool healthyTopsoilSelectedFlag; //make sure the radio toggle button is checked in scene mode
+    private bool isCoveredFlag;
     private GameObject currentSelectedObject;
     private GameObject soilProfile;
     private string childPathName;
@@ -19,6 +19,7 @@ public class landGM : MonoBehaviour
     void Start()
     {
         healthyTopsoilSelectedFlag = true;
+        isCoveredFlag = true;
         currentSelectedObject = flatLand;
         childPathName = "soil profile";
        
@@ -32,19 +33,19 @@ public class landGM : MonoBehaviour
 
     public void FlatSelected()
     {
-        flatLand.GetComponent<land>().ToggleIsSelected();
+        flatLand.GetComponent<land>().ToggleIsSelectedLand();
         currentSelectedObject = flatLand;
     }
 
     public void SlopeSelected()
     {
-        slopeLand.GetComponent<land>().ToggleIsSelected();
+        slopeLand.GetComponent<land>().ToggleIsSelectedLand();
         currentSelectedObject = slopeLand;
     }
 
     public void SteepSlopeSelected()
     {
-        steepSlopeLand.GetComponent<land>().ToggleIsSelected();
+        steepSlopeLand.GetComponent<land>().ToggleIsSelectedLand();
         currentSelectedObject = steepSlopeLand;
     }
 
@@ -76,6 +77,26 @@ public class landGM : MonoBehaviour
 
     public void CoveredSelected()
     {
+        isCoveredFlag = !isCoveredFlag;
 
+        Debug.Log("currentSelectedObject is " + currentSelectedObject.name);
+        soilProfile = currentSelectedObject.transform.Find(childPathName).gameObject;
+        if (soilProfile == null)
+        {
+            Debug.LogError("unable to find child " + childPathName);
+        }
+
+        if (isCoveredFlag) // healthy soil 
+        {
+            //get the script and call function and pass true
+            soilProfile.GetComponent<SoilProfileGM>().SetTopsoilColor(isCoveredFlag);
+            currentSelectedObject.GetComponent<land>().treesForCover.SetActive(isCoveredFlag);
+        }
+        else
+        {
+            soilProfile.GetComponent<SoilProfileGM>().SetTopsoilColor(isCoveredFlag);
+            currentSelectedObject.GetComponent<land>().treesForCover.SetActive(isCoveredFlag);
+
+        }
     }
 }

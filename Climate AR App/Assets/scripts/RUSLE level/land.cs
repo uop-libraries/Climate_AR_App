@@ -7,6 +7,7 @@ public class land : MonoBehaviour
     public bool isHealthyTopsoil;
     public bool isCovered;
     public bool isSelected;
+    public GameObject treesForCover;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,7 @@ public class land : MonoBehaviour
         isHealthyTopsoil = !isHealthyTopsoil;
     }
 
-    public void ToggleIsSelected()
+    public void ToggleIsSelectedLand()
     {
         isSelected = !isSelected;
         this.gameObject.SetActive(isSelected);
