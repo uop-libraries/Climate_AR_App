@@ -80,11 +80,17 @@ public class SoilCube : MonoBehaviour
 
     }
 
+    /**
+     * start the erosion of the soil profile
+     */
     public void StartErosion()
     {
         Eroode();
     }
 
+    /**
+     * get the current color of the soil profile
+     */
     public Material GetSoilColor()
     {
         return gameObject.GetComponent<Renderer>().material;

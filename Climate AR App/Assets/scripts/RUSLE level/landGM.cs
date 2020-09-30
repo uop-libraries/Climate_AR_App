@@ -7,8 +7,10 @@ public class landGM : MonoBehaviour
     public GameObject flatLand;
     public GameObject slopeLand;
     public GameObject steepSlopeLand;
-    public Material goodSoilColor;
-    public Material badSoilColor;
+    public string healthyChoice;
+    public string unhealthyChoice;
+    public string coveredCrops;
+    public string uncoveredCrops;
 
     private bool healthyTopsoilSelectedFlag; //make sure the radio toggle button is checked in scene mode
     private bool isCoveredFlag;
@@ -36,12 +38,10 @@ public class landGM : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
+    /**
+    * called by the radio button for the flat
+    */
     public void FlatSelected()
     {
         Debug.Log("flatLand.GetComponent<land>().GetButtonIsOn() " + flatLand.GetComponent<land>().GetButtonIsOn());
@@ -61,6 +61,9 @@ public class landGM : MonoBehaviour
 
     }
 
+    /**
+    * called by the radio button for the slope
+    */
     public void SlopeSelected()
     {
         Debug.Log("slopeLand.GetComponent<land>().GetButtonIsOn() " + flatLand.GetComponent<land>().GetButtonIsOn());
@@ -78,6 +81,9 @@ public class landGM : MonoBehaviour
         }
     }
 
+    /**
+     * called by the radio button for the steep slope
+     */
     public void SteepSlopeSelected()
     {
         Debug.Log("steepSlopeLand.GetComponent<land>().GetButtonIsOn() " + flatLand.GetComponent<land>().GetButtonIsOn());
@@ -172,5 +178,34 @@ public class landGM : MonoBehaviour
         flatLand.GetComponent<land>().treesForCover.SetActive(visability);
         slopeLand.GetComponent<land>().treesForCover.SetActive(visability);
         steepSlopeLand.GetComponent<land>().treesForCover.SetActive(visability);
+    }
+
+    /**
+     * call this function by a button click. returns the string with text info informing user of their choice
+     */
+    public string DoneWithSelection()
+    {
+        string informText;
+        //call the current selected object and get the text attached to it
+        informText = currentSelectedObject.GetComponent<land>().GetText();
+        informText += " ";
+        if (healthyTopsoilSelectedFlag)
+        {
+            informText += healthyChoice;
+        }
+        else
+        {
+            informText += unhealthyChoice;
+        }
+        informText += " ";
+        if (isCoveredFlag)
+        {
+            informText += coveredCrops;
+        }
+        else
+        {
+            informText += uncoveredCrops;
+        }
+        return informText;
     }
 }
