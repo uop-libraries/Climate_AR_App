@@ -23,7 +23,7 @@ public class SoilCube : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        //StartErosion();
+        StartErosion();
     }
 
     // Update is called once per frame

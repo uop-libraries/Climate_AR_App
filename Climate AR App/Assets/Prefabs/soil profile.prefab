@@ -369,8 +369,8 @@ MonoBehaviour:
   greenTopCube: 1
   brownCube: {fileID: 6189905065483971116}
   erosionAmount: 2
-  goodSoilColor: {fileID: 0}
-  badSoilColor: {fileID: 0}
+  goodSoilColor: {fileID: 2100000, guid: 87ff71ffc286b91449d2296928632aed, type: 2}
+  badSoilColor: {fileID: 2100000, guid: 7bcfec495539b3b4ba46f415eebf76ff, type: 2}
   grass: {fileID: 6189905067101086351}
 --- !u!1 &6189905066433813496
 GameObject:
