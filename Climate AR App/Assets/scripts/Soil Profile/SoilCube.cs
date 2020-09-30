@@ -55,10 +55,12 @@ public class SoilCube : MonoBehaviour
         if (isTheSoilGood)
         {
             gameObject.GetComponent<Renderer>().material = goodSoilColor;
+            //Debug.Log("in soil cube, good soil color is now " + goodSoilColor);
         }
         else
         {
             gameObject.GetComponent<Renderer>().material = badSoilColor;
+            //Debug.Log("in soil cube, bad soil color is now " + badSoilColor);
         }
 
     }
@@ -83,5 +85,8 @@ public class SoilCube : MonoBehaviour
         Eroode();
     }
 
-
+    public Material GetSoilColor()
+    {
+        return gameObject.GetComponent<Renderer>().material;
+    }
 }

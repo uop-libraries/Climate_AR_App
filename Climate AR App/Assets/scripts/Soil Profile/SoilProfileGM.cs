@@ -46,20 +46,43 @@ public class SoilProfileGM : MonoBehaviour
     /**
         * set the top soils health. true show the color be green , false is color being yellow
         */
-    public void SetTopsoilColor(bool flag)
+    public Material SetTopsoilColor(bool flag)
     {
-        if (flag) //show healthy soil
+        //Debug.Log("is healthySoilCubeScriptHolder active soil " + healthySoilCubeScriptHolder.activeInHierarchy);
+        if (flag && healthySoilCubeScriptHolder.activeInHierarchy) //show healthy soil
         {
-            //healthyTopsoil.SetActive(flag);
-            //unhealthyTopSoil.SetActive(!flag);
+
+            Debug.Log("healthySoilCubeScriptHolder in soil color GM set the topsoil to good");
             healthySoilCubeScriptHolder.GetComponent<SoilCube>().IsSoilGood(flag);
+            return healthySoilCubeScriptHolder.GetComponent<SoilCube>().GetSoilColor();
         }
-        else // hide the soil
+        else if(!flag && healthySoilCubeScriptHolder.activeInHierarchy) // hide the soil
         {
-            //unhealthyTopSoil.SetActive(!flag);
-            //healthyTopsoil.SetActive(flag);
-            healthySoilCubeScriptHolder.GetComponent<SoilCube>().IsSoilGood(!flag);
+
+            Debug.Log("healthySoilCubeScriptHolder in soil color GM set the topsoil to bad");
+            healthySoilCubeScriptHolder.GetComponent<SoilCube>().IsSoilGood(flag);
+            return healthySoilCubeScriptHolder.GetComponent<SoilCube>().GetSoilColor();
+
 
         }
+
+        if (flag && unHealthySoilCubeScriptHolder.activeInHierarchy) //show healthy soil
+        {
+
+            Debug.Log("unHealthySoilCubeScriptHolder in soil color GM set the topsoil to good");
+            unHealthySoilCubeScriptHolder.GetComponent<SoilCube>().IsSoilGood(flag);
+            return unHealthySoilCubeScriptHolder.GetComponent<SoilCube>().GetSoilColor();
+        }
+        else if (!flag && unHealthySoilCubeScriptHolder.activeInHierarchy) // hide the soil
+        {
+
+            Debug.Log(" unHealthySoilCubeScriptHolder in soil color GM set the topsoil to bad");
+            unHealthySoilCubeScriptHolder.GetComponent<SoilCube>().IsSoilGood(flag);
+            return unHealthySoilCubeScriptHolder.GetComponent<SoilCube>().GetSoilColor();
+
+
+        }
+
+        return null;
     }
 }

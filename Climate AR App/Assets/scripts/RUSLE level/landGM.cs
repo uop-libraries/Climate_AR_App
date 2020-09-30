@@ -15,6 +15,7 @@ public class landGM : MonoBehaviour
     private GameObject currentSelectedObject;
     private GameObject soilProfile;
     private string childPathName;
+    private Material currentSoilProfileColor;
     // Start is called before the first frame update
     void Start()
     {
@@ -79,7 +80,7 @@ public class landGM : MonoBehaviour
     {
         isCoveredFlag = !isCoveredFlag;
 
-        Debug.Log("currentSelectedObject is " + currentSelectedObject.name);
+        //Debug.Log("CoveredSelected currentSelectedObject is " + currentSelectedObject.name);
         soilProfile = currentSelectedObject.transform.Find(childPathName).gameObject;
         if (soilProfile == null)
         {
@@ -89,13 +90,17 @@ public class landGM : MonoBehaviour
         if (isCoveredFlag) // healthy soil 
         {
             //get the script and call function and pass true
-            soilProfile.GetComponent<SoilProfileGM>().SetTopsoilColor(isCoveredFlag);
+            currentSoilProfileColor = soilProfile.GetComponent<SoilProfileGM>().SetTopsoilColor(isCoveredFlag);
+            Debug.Log("soil profile color is " + currentSoilProfileColor);
             currentSelectedObject.GetComponent<land>().treesForCover.SetActive(isCoveredFlag);
+            currentSelectedObject.GetComponent<land>().ChangeLandColor(currentSoilProfileColor);
         }
         else
         {
-            soilProfile.GetComponent<SoilProfileGM>().SetTopsoilColor(isCoveredFlag);
+            currentSoilProfileColor = soilProfile.GetComponent<SoilProfileGM>().SetTopsoilColor(isCoveredFlag);
+            Debug.Log("soil profile color is " + currentSoilProfileColor);
             currentSelectedObject.GetComponent<land>().treesForCover.SetActive(isCoveredFlag);
+            currentSelectedObject.GetComponent<land>().ChangeLandColor(currentSoilProfileColor);
 
         }
     }

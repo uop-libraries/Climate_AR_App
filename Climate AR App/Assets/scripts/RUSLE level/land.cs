@@ -1,13 +1,14 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class land : MonoBehaviour
 {
-    public bool isHealthyTopsoil;
-    public bool isCovered;
+
     public bool isSelected;
     public GameObject treesForCover;
+    public GameObject theLand;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,15 +21,6 @@ public class land : MonoBehaviour
         
     }
 
-    public void SetIsCovered()
-    {
-        isCovered = !isCovered;
-    }
-    
-    public void SetIsHealthyTopsoil()
-    {
-        isHealthyTopsoil = !isHealthyTopsoil;
-    }
 
     public void ToggleIsSelectedLand()
     {
@@ -37,5 +29,10 @@ public class land : MonoBehaviour
         Debug.Log("isSelected " + isSelected);
     }
     
+    public void ChangeLandColor(Material color)
+    {
+        Debug.Log("change land color " + color);
+        theLand.GetComponent<Renderer>().material = color;
+    }
 }
 
