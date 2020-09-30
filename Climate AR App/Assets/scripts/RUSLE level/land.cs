@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class land : MonoBehaviour
 {
-    private bool isHealthyTopsoil;
-    private bool isCovered;
-    private bool isSelected;
+    public bool isHealthyTopsoil;
+    public bool isCovered;
+    public bool isSelected;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -19,19 +19,21 @@ public class land : MonoBehaviour
         
     }
 
-    public void SetIsCovered(bool value)
+    public void SetIsCovered()
     {
-        isCovered = value;
+        isCovered = !isCovered;
     }
     
-    public void SetIsHealthyTopsoil(bool value)
+    public void SetIsHealthyTopsoil()
     {
-        isHealthyTopsoil = value;
+        isHealthyTopsoil = !isHealthyTopsoil;
     }
 
     public void ToggleIsSelected()
     {
         isSelected = !isSelected;
+        this.gameObject.SetActive(isSelected);
+        Debug.Log("isSelected " + isSelected);
     }
     
 }

@@ -8,7 +8,8 @@ using UnityEngine;
  */
 public class SoilProfileGM : MonoBehaviour
 {
-    public GameObject[] cubes;
+    public GameObject healthyTopsoil;
+    public GameObject unhealthyTopSoil;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,14 +22,22 @@ public class SoilProfileGM : MonoBehaviour
         
     }
 
+
+
     /**
-     * hide or show the porfile based off of the passed in bool value. true = show, false = hide
+     * set the top soils health. true show the thick topsoil, false is thing topsoil
      */
-    public void ShowAll(bool flag)
+    public void SetTopsoilToHealthy(bool flag)
     {
-        for (int i = 0; i < cubes.Length; i++)
+        if (flag) //show healthy soil
         {
-            cubes[i].SetActive(flag);
+            healthyTopsoil.SetActive(flag);
+            unhealthyTopSoil.SetActive(!flag);
+        }
+        else // hide the soil
+        {
+            unhealthyTopSoil.SetActive(!flag);
+            healthyTopsoil.SetActive(flag);
         }
     }
 }
