@@ -16,6 +16,10 @@ public class landGM : MonoBehaviour
     private GameObject soilProfile;
     private string childPathName;
     private Material currentSoilProfileColor;
+
+    private GameObject soilProfileFlat;
+    private GameObject soilProfileSlope;
+    private GameObject soilProfileSteepSlope;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +27,13 @@ public class landGM : MonoBehaviour
         isCoveredFlag = true;
         currentSelectedObject = flatLand;
         childPathName = "soil profile";
-       
+        soilProfileFlat = flatLand.transform.Find(childPathName).gameObject;
+        soilProfileSlope = slopeLand.transform.Find(childPathName).gameObject;
+        soilProfileSteepSlope = steepSlopeLand.transform.Find(childPathName).gameObject;
+        if (soilProfileFlat == null || soilProfileSlope == null || soilProfileSteepSlope == null)
+        {
+            Debug.LogError("unable to find child " + childPathName);
+        }
     }
 
     // Update is called once per frame
@@ -85,32 +95,41 @@ public class landGM : MonoBehaviour
         }
     }
 
+
+    /// ////////////////////////////////////////////////////////////////////////
+     
+    /**
+     * handles the thickness of the soil. called by radio button clicked
+     */
     public void HealthyTopsoilSelected()
     {
         healthyTopsoilSelectedFlag = !healthyTopsoilSelectedFlag;
         //find child game object with soil tag
         Debug.Log("currentSelectedObject is " + currentSelectedObject.name);
-        soilProfile = currentSelectedObject.transform.Find(childPathName).gameObject;
-        if (soilProfile == null)
-        {
-            Debug.LogError("unable to find child " + childPathName);
-        }
-
-        if (healthyTopsoilSelectedFlag) // healthy soil 
-        {
+ 
             //get the script and call function and pass true
-            soilProfile.GetComponent<SoilProfileGM>().SetTopsoilToHealthy(true);
-        }
-        else
-        {
-            soilProfile.GetComponent<SoilProfileGM>().SetTopsoilToHealthy(false);
-
-        }
+        ChangeAllSilProfileThickness(healthyTopsoilSelectedFlag);       
 
     }
 
+    /**
+     * change the soil profile thickness. true is thick, false is thin
+     */
+    private void ChangeAllSilProfileThickness(bool isHealthy)
+    {
+        soilProfileFlat.GetComponent<SoilProfileGM>().SetTopsoilToHealthy(isHealthy);
+        soilProfileSlope.GetComponent<SoilProfileGM>().SetTopsoilToHealthy(isHealthy);
+        soilProfileSteepSlope.GetComponent<SoilProfileGM>().SetTopsoilToHealthy(isHealthy);
+    }
 
-
+    /**
+     * called when the radio button is clicked. 
+     * calls function to
+     *  toggle visability of trees
+     *  set color of profile
+     *  set the color of the land
+     * 
+     */
     public void CoveredSelected()
     {
         isCoveredFlag = !isCoveredFlag;
@@ -122,17 +141,21 @@ public class landGM : MonoBehaviour
 
     }
 
+    /**
+     * set the color of the soil profile
+     */
     void SetColorOfProfile(bool isHealthy)
     {
-        GameObject soilProfileFlat = flatLand.transform.Find(childPathName).gameObject;
-        GameObject soilProfileSlope = slopeLand.transform.Find(childPathName).gameObject;
-        GameObject soilProfileSteepSlope = steepSlopeLand.transform.Find(childPathName).gameObject;
+
         soilProfileFlat.GetComponent<SoilProfileGM>().SetTopsoilColorToHealthy(isHealthy); //changes the soil profile color
         soilProfileSlope.GetComponent<SoilProfileGM>().SetTopsoilColorToHealthy(isHealthy); //changes the soil profile color
         soilProfileSteepSlope.GetComponent<SoilProfileGM>().SetTopsoilColorToHealthy(isHealthy); //changes the soil profile color
 
     }
 
+    /**
+     * set the color of the land
+     */
     void SetColorOfSoilForAllLands(Material color)
     {
         flatLand.GetComponent<land>().ChangeLandColor(color);
@@ -141,6 +164,9 @@ public class landGM : MonoBehaviour
 
     }
 
+    /**
+     * toggle the visability of the trees on the land
+     */
     void SetVisabilityOfTreesForAllLands(bool visability)
     {
         flatLand.GetComponent<land>().treesForCover.SetActive(visability);
