@@ -90,11 +90,11 @@ public class EnviroAudioSource : MonoBehaviour {
 		currentWeatherVolume = Mathf.Lerp(currentWeatherVolume, EnviroSkyMgr.instance.weatherAudioVolume + EnviroSkyMgr.instance.weatherAudioVolumeModifier, 10 * Time.deltaTime);
 
         if (myFunction == AudioSourceFunction.Weather1 || myFunction == AudioSourceFunction.Weather2 || myFunction == AudioSourceFunction.Thunder){
-            Debug.Log(" isFadingIn " + isFadingIn + " audiosrc.volume = " + audiosrc.volume);
+            //Debug.Log(" isFadingIn " + isFadingIn + " audiosrc.volume = " + audiosrc.volume);
             //if (isFadingIn && audiosrc.volume < currentWeatherVolume && audiosrc.volume < volumneLimit) { // added in volume cap -KC
             if (isFadingIn && audiosrc.volume < volumneLimit)      { // added in volume cap -KC
                 audiosrc.volume += EnviroSkyMgr.instance.audioTransitionSpeed * Time.deltaTime;
-                Debug.Log("isFadingIn && audiosrc.volume < volumneLimit");
+                //Debug.Log("isFadingIn && audiosrc.volume < volumneLimit");
 
             } else if (isFadingIn && audiosrc.volume >= currentWeatherVolume - 0.01f) {
 				isFadingIn = false;

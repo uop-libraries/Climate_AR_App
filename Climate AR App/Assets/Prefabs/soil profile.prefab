@@ -519,10 +519,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   greenTopCube: 1
   brownCube: {fileID: 8693312759688109960}
-  erosionAmount: 2
+  startingErosionAmount: 0
   goodSoilColor: {fileID: 2100000, guid: 87ff71ffc286b91449d2296928632aed, type: 2}
   badSoilColor: {fileID: 2100000, guid: 668dd8403bdfc6347a3f5b1c412defa1, type: 2}
   grass: {fileID: 6071590025202963386}
+  animGreen: {fileID: 5636175117296929875}
+  animBrown: {fileID: 0}
 --- !u!1 &6071590025202963386
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,10 +940,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   greenTopCube: 1
   brownCube: {fileID: 6189905065483971116}
-  erosionAmount: 2
+  startingErosionAmount: 0
   goodSoilColor: {fileID: 2100000, guid: 87ff71ffc286b91449d2296928632aed, type: 2}
   badSoilColor: {fileID: 2100000, guid: 668dd8403bdfc6347a3f5b1c412defa1, type: 2}
   grass: {fileID: 6189905067101086351}
+  animGreen: {fileID: 6189905066099228898}
+  animBrown: {fileID: 0}
 --- !u!1 &6189905066795244586
 GameObject:
   m_ObjectHideFlags: 0

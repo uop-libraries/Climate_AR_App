@@ -81,4 +81,13 @@ public class SoilProfileGM : MonoBehaviour
     {
         return unHealthySoilCubeScriptHolder.GetComponent<SoilCube>().GetErosionAmount();
     }
+
+    /**
+     * start the erosion on both profiles
+     */
+    public void StartErosionsOnProfiles()
+    {
+        healthySoilCubeScriptHolder.GetComponent<SoilCube>().StartErosion();
+        unHealthySoilCubeScriptHolder.GetComponent<SoilCube>().StartErosion();
+    }
 }

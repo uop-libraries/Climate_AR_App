@@ -223,4 +223,15 @@ public class landGM : MonoBehaviour
         Debug.Log("erosionAmount " + erosionAmount);
         return informText;
     }
+
+    /**
+     * access the soilprofile GM to start the erosions on healthy and un healthy profiles
+     */
+    public void StartErosions()
+    {
+        GameObject tempSoilGM;
+        tempSoilGM = currentSelectedObject.transform.Find(childPathName).gameObject; //get the soilGM
+        tempSoilGM.GetComponent<SoilProfileGM>().StartErosionsOnProfiles();//set the erosion amount on the soil profile
+
+    }
 }
