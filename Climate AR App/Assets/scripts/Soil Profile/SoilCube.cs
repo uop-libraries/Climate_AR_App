@@ -18,7 +18,8 @@ public class SoilCube : MonoBehaviour
     public Material goodSoilColor;
     public Material badSoilColor;
     public GameObject grass;
-    Animator animGreen;
+    public Animator animGreen;
+    bool doneWithGreenErosion = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,18 +30,7 @@ public class SoilCube : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (animGreen.GetBool("isErosionTime") && gameObject.GetComponent<Renderer>().enabled && animGreen.GetCurrentAnimatorStateInfo(0).normalizedTime > 1) //erosion animation is done playing. If normalizedTime is 0 to 1 = playing, if greater than 1 = finished
-        if (animGreen.GetCurrentAnimatorStateInfo(0).normalizedTime > 1) //erosion animation is done playing. If normalizedTime is 0 to 1 = playing, if greater than 1 = finished
-        {
-            //this.GetComponent<Renderer>().enabled = false; //hide the green
-            Debug.Log("done with green anim");
-            //check if green is done animating
-            // if true
-            // call erodeBrownCube          
-            float temp = animGreen.GetCurrentAnimatorStateInfo(0).normalizedTime;
-            Debug.Log(" animGreen.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 " + temp);
 
-        }
     }
 
 
@@ -89,6 +79,25 @@ public class SoilCube : MonoBehaviour
 
     }
 
+    /**
+     * called by anim event
+     */
+    void DoneWithGreenErosion()
+    {
+        Debug.Log("DONE WITH GREEN");
+        ErodeBrownCube();
+ 
+        this.GetComponent<Renderer>().enabled = false; //hide the green cube
+
+    }
+
+    /**
+     * called by anim event
+     */
+    void HideGrass()
+    {
+        grass.SetActive(false);
+    }
     /**
      * start the erosion of the soil profile
      */

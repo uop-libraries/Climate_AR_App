@@ -41,7 +41,7 @@ AnimatorStateMachine:
     m_Position: {x: 230, y: 170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -962584053658093707}
-    m_Position: {x: 550, y: 170, z: 0}
+    m_Position: {x: 490, y: 150, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -49,7 +49,7 @@ AnimatorStateMachine:
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
-  m_ExitPosition: {x: 800, y: 120, z: 0}
+  m_ExitPosition: {x: 810, y: 40, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -5217380761025885829}
 --- !u!114 &-1010792471571545588
@@ -99,14 +99,14 @@ AnimatorController:
   m_Name: green
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: isErosionTime
-    m_Type: 4
+  - m_Name: erosionSpeed
+    m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: erosionSpeed
-    m_Type: 1
+  - m_Name: isErosionTime
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
