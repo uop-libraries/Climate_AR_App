@@ -55,4 +55,30 @@ public class SoilProfileGM : MonoBehaviour
     {
         return healthySoilCubeScriptHolder.GetComponent<SoilCube>().GetSoilColor();
     }
+
+    /**
+     * sets the amount of erosion on both healthy and un healthy profiles
+     */
+    public void SetErosionAmountOnProfiles(float passedErosionAmount)
+    {
+        healthySoilCubeScriptHolder.GetComponent<SoilCube>().SetErosionAmount(passedErosionAmount);
+        unHealthySoilCubeScriptHolder.GetComponent<SoilCube>().SetErosionAmount(passedErosionAmount);
+
+    }
+
+    /**
+     * getter for the erosion of the healthy soil profile
+     */
+    public float GetErosionOfHealthyProfile()
+    {
+        return healthySoilCubeScriptHolder.GetComponent<SoilCube>().GetErosionAmount();
+    }
+
+    /**
+    * getter for the erosion of the unhealthy soil profile
+    */
+    public float GetErosionOfUnHealthyProfile()
+    {
+        return unHealthySoilCubeScriptHolder.GetComponent<SoilCube>().GetErosionAmount();
+    }
 }

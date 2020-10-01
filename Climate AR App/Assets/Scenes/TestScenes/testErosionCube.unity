@@ -155,7 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   greenTopCube: 0
   brownCube: {fileID: 0}
-  erosionAmount: 5
+  startingErosionAmount: 0
   goodSoilColor: {fileID: 2100000, guid: 87ff71ffc286b91449d2296928632aed, type: 2}
   badSoilColor: {fileID: 2100000, guid: 42caffe1132386f4daa037a9663088b9, type: 2}
   grass: {fileID: 0}
@@ -2533,7 +2533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   greenTopCube: 1
   brownCube: {fileID: 3289381075313888984}
-  erosionAmount: 2
+  startingErosionAmount: 0.6
   goodSoilColor: {fileID: 2100000, guid: 87ff71ffc286b91449d2296928632aed, type: 2}
   badSoilColor: {fileID: 2100000, guid: 7bcfec495539b3b4ba46f415eebf76ff, type: 2}
   grass: {fileID: 3289381073696933499}

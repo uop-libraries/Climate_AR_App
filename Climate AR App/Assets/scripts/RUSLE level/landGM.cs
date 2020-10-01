@@ -14,8 +14,9 @@ public class landGM : MonoBehaviour
 
     private bool healthyTopsoilSelectedFlag; //make sure the radio toggle button is checked in scene mode
     private bool isCoveredFlag;
-    private GameObject currentSelectedObject;
-    private GameObject soilProfile;
+    private float erosionAmount; //used to calc the erosion
+    private GameObject currentSelectedObject; //holds the current visable land
+    private GameObject soilProfile; 
     private string childPathName;
     private Material currentSoilProfileColor;
 
@@ -25,6 +26,7 @@ public class landGM : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        erosionAmount = 0f;
         healthyTopsoilSelectedFlag = true;
         isCoveredFlag = true;
         currentSelectedObject = flatLand;
@@ -182,30 +184,43 @@ public class landGM : MonoBehaviour
 
     /**
      * call this function by a button click. returns the string with text info informing user of their choice
+     * also calcs and sets the erosion amount on the soil profile.
      */
     public string DoneWithSelection()
     {
         string informText;
+        GameObject tempSoilGM;
+        tempSoilGM = currentSelectedObject.transform.Find(childPathName).gameObject; //get the soilGM
         //call the current selected object and get the text attached to it
         informText = currentSelectedObject.GetComponent<land>().GetText();
         informText += " ";
-        if (healthyTopsoilSelectedFlag)
+        if (healthyTopsoilSelectedFlag) //healthy topsoil
         {
             informText += healthyChoice;
+            //erosion, dont speed up
+            erosionAmount = tempSoilGM.GetComponent<SoilProfileGM>().GetErosionOfHealthyProfile(); //set the value to the erosion starting amount which is based off the slope of the land
         }
         else
         {
             informText += unhealthyChoice;
+            //erosion, speed up
+            erosionAmount = tempSoilGM.GetComponent<SoilProfileGM>().GetErosionOfUnHealthyProfile();//set the value to the erosion starting amount which is based off the slope of the land
+            erosionAmount += 0.1f;
         }
         informText += " ";
-        if (isCoveredFlag)
+        if (isCoveredFlag) //covered farm
         {
             informText += coveredCrops;
+            //erosion, dont speed up
         }
         else
         {
             informText += uncoveredCrops;
+            //erosion, speed up
+            erosionAmount += 0.1f;
         }
+        tempSoilGM.GetComponent<SoilProfileGM>().SetErosionAmountOnProfiles(erosionAmount);//set the erosion amount on the soil profile
+        Debug.Log("erosionAmount " + erosionAmount);
         return informText;
     }
 }

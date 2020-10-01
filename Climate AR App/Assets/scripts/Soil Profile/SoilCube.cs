@@ -14,7 +14,8 @@ public class SoilCube : MonoBehaviour
 {
     public bool greenTopCube;
     public GameObject brownCube;
-    public float erosionAmount; //the amount that the top will be shrunk by 
+    [Tooltip("0.3f for flat. 0.6f sloped. 0.9f steep sloped")]
+    public float startingErosionAmount; //the erosion amount to start with, might be subtracted from depending on user RUSLE choices
     public Material goodSoilColor;
     public Material badSoilColor;
     public GameObject grass;
@@ -39,7 +40,7 @@ public class SoilCube : MonoBehaviour
             if (brownCube != null)
             {
                 brownCube.GetComponent<Animator>().SetBool("isErosionBrownTime", true);// start the erosion animation
-                brownCube.GetComponent<Animator>().SetFloat("erosionSpeed", erosionAmount); // adjust the speed of animation. this ammount is a multiplied amount
+                brownCube.GetComponent<Animator>().SetFloat("erosionSpeed", startingErosionAmount); // adjust the speed of animation. this ammount is a multiplied amount
 
             }
         }
@@ -75,7 +76,7 @@ public class SoilCube : MonoBehaviour
         
         anim.SetBool("isErosionTime", true);// start the erosion animation
         
-        anim.SetFloat("erosionSpeed", erosionAmount); // adjust the speed of animation. this ammount is a multiplied amount
+        anim.SetFloat("erosionSpeed", startingErosionAmount); // adjust the speed of animation. this ammount is a multiplied amount
 
 
     }
@@ -94,5 +95,15 @@ public class SoilCube : MonoBehaviour
     public Material GetSoilColor()
     {
         return gameObject.GetComponent<Renderer>().material;
+    }
+
+    public void SetErosionAmount(float amount)
+    {
+        startingErosionAmount = amount;
+    }
+
+    public float GetErosionAmount()
+    {
+        return startingErosionAmount;
     }
 }
