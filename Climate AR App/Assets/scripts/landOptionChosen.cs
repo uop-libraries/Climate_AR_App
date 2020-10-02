@@ -39,6 +39,8 @@ public class landOptionChosen : MonoBehaviour
     {
         Debug.Log("done with good side");
         goodSideCanvas.SetActive(false);
+        InfoPopupText.text = goodSideGM.GetComponent<landGM>().DoneWithSelection(); //set the text
+        infoPopUpCanvas.SetActive(true); //show the text
     }
 
     /**
