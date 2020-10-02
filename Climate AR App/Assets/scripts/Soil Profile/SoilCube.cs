@@ -18,21 +18,15 @@ public class SoilCube : MonoBehaviour
     public Material goodSoilColor;
     public Material badSoilColor;
     public GameObject grass;
-    public Animator animGreen;
+   
+    //public Animator animGreen;
     bool doneWithGreenErosion = false;
+    private GameObject Storm;
     // Start is called before the first frame update
     void Start()
     {
-        animGreen = GetComponent<Animator>();
-        //StartErosion();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
 
     }
-
 
     /**
      * handles the animation start for the brown cube.
@@ -71,9 +65,9 @@ public class SoilCube : MonoBehaviour
         //get animation paramter for speed
         //animations[i].GetComponent<Animator>().SetBool("StartRiverIncrease", true); //start the animation, the string value is a parameter from the animator window
         
-        animGreen.SetFloat("erosionSpeed", startingErosionAmount); // adjust the speed of animation. this ammount is a multiplied amount
+        this.GetComponent<Animator>().SetFloat("erosionSpeed", startingErosionAmount); // adjust the speed of animation. this ammount is a multiplied amount
 
-        animGreen.SetBool("isErosionTime", true);// start the erosion animation
+        this.GetComponent<Animator>().SetBool("isErosionTime", true);// start the erosion animation
         
 
 
@@ -85,9 +79,26 @@ public class SoilCube : MonoBehaviour
     void DoneWithGreenErosion()
     {
         Debug.Log("DONE WITH GREEN");
-        ErodeBrownCube();
- 
+        ErodeBrownCube(); 
         this.GetComponent<Renderer>().enabled = false; //hide the green cube
+    }
+
+
+    public void DoneWithBrownErosion()
+    {
+        //stop rain
+        Debug.Log("jjjjjjjjjjjjjjjj Brown erosion is done");
+        //Storm.GetComponent<agricultureStorm>().EndStorm();
+        //find the storm object dynamically
+        Storm = GameObject.FindWithTag("storm");
+        if (Storm == null)
+        {
+            Debug.LogError("Error need to have object with tag storm");
+        }
+        else
+        {
+            Storm.GetComponent<agricultureStorm>().EndStorm();
+        }
 
     }
 

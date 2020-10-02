@@ -19,31 +19,54 @@ public class agricultureStorm : MonoBehaviour
         TextFrame.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    /**
+     * show the inform canvas text. called by button
+     */
     public void ShowText()
     {
         TextFrame.SetActive(true);
 
     }
 
+    /**
+     * start the storm and sounds.
+     * called by button
+     */
     public void StartStorm()
     {
         Debug.Log("start the storm ");
         TextFrame.SetActive(false);
         stormClouds.SetActive(true);
-        rain.SetActive(true);
-        rainSound.SetActive(true);
+        stormClouds.GetComponent<Animator>().SetBool("StartStorm", true); //start the animation
+       // rain.SetActive(true);
         rainSound.GetComponent<EnviroAudioSource>().StartRainSound();
         rainSound.GetComponent<EnviroAudioSource>().playOnStart = true;
+    }
+
+    /**
+    * end the storm and sounds.
+    * called by button
+    */
+    public void EndStorm()
+    {
+        stormClouds.GetComponent<Animator>().SetBool("StartStorm", false); //start the animation
+    }
+
+    void HideClouds()
+    {
+        stormClouds.SetActive(false);
+    }
+
+    void StartRain()
+    {
+        rain.SetActive(true);
+        rainSound.SetActive(true);
         landGM.GetComponent<landGM>().StartErosions();
     }
 
-    public void EndStorm()
+    void EndRain()
     {
-
+        rain.SetActive(false);
+        rainSound.GetComponent<EnviroAudioSource>().FadeOut();
     }
 }

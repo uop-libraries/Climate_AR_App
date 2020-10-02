@@ -517,14 +517,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d94117e58eb55a6479569bf27bb4dc50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  greenTopCube: 1
   brownCube: {fileID: 8693312759688109960}
   startingErosionAmount: 0
   goodSoilColor: {fileID: 2100000, guid: 87ff71ffc286b91449d2296928632aed, type: 2}
   badSoilColor: {fileID: 2100000, guid: 668dd8403bdfc6347a3f5b1c412defa1, type: 2}
   grass: {fileID: 6071590025202963386}
-  animGreen: {fileID: 5636175117296929875}
-  animBrown: {fileID: 0}
 --- !u!1 &6071590025202963386
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,6 +662,7 @@ GameObject:
   - component: {fileID: 6189905065483971114}
   - component: {fileID: 6189905065483971117}
   - component: {fileID: 6189905065483971113}
+  - component: {fileID: 644636069202824970}
   m_Layer: 0
   m_Name: topsoil
   m_TagString: Untagged
@@ -764,6 +762,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &644636069202824970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6189905065483971116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f871beb9fd835e49949b1062d3e6c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  topsoil: {fileID: 6189905066099228901}
 --- !u!1 &6189905065887550427
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,14 +949,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d94117e58eb55a6479569bf27bb4dc50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  greenTopCube: 1
   brownCube: {fileID: 6189905065483971116}
   startingErosionAmount: 0
   goodSoilColor: {fileID: 2100000, guid: 87ff71ffc286b91449d2296928632aed, type: 2}
   badSoilColor: {fileID: 2100000, guid: 668dd8403bdfc6347a3f5b1c412defa1, type: 2}
   grass: {fileID: 6189905067101086351}
-  animGreen: {fileID: 6189905066099228898}
-  animBrown: {fileID: 0}
 --- !u!1 &6189905066795244586
 GameObject:
   m_ObjectHideFlags: 0
@@ -1370,6 +1378,7 @@ GameObject:
   - component: {fileID: 677912241807742179}
   - component: {fileID: 8874383849039631136}
   - component: {fileID: 5779896429777057284}
+  - component: {fileID: 2544185101237993132}
   m_Layer: 0
   m_Name: topsoil
   m_TagString: Untagged
@@ -1469,6 +1478,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2544185101237993132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8693312759688109960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f871beb9fd835e49949b1062d3e6c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  topsoil: {fileID: 5908149244706966080}
 --- !u!1001 &209609816352104648
 PrefabInstance:
   m_ObjectHideFlags: 0
