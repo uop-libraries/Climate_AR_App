@@ -13,7 +13,7 @@ using UnityEngine;
 public class SoilCube : MonoBehaviour
 {
     public GameObject brownCube;
-    [Tooltip("0.3f for flat. 0.6f sloped. 0.9f steep sloped")]
+    [Tooltip("for poor managed land. 0.3f for flat. 0.6f sloped. 0.9f steep sloped")]
     public float startingErosionAmount; //the erosion amount to start with, might be subtracted from depending on user RUSLE choices
     public Material goodSoilColor;
     public Material badSoilColor;
