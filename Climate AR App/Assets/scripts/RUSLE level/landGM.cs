@@ -29,7 +29,7 @@ public class landGM : MonoBehaviour
         erosionAmount = 0f;
         healthyTopsoilSelectedFlag = true;
         isCoveredFlag = true;
-        currentSelectedObject = flatLand;
+        currentSelectedObject = steepSlopeLand;
         childPathName = "soil profile";
         soilProfileFlat = flatLand.transform.Find(childPathName).gameObject;
         soilProfileSlope = slopeLand.transform.Find(childPathName).gameObject;
@@ -229,6 +229,10 @@ public class landGM : MonoBehaviour
      */
     public void StartErosions()
     {
+        if (currentSelectedObject == null)
+        {
+            Debug.LogError("currentSelectedObject is null");
+        }
         GameObject tempSoilGM;
         tempSoilGM = currentSelectedObject.transform.Find(childPathName).gameObject; //get the soilGM
         tempSoilGM.GetComponent<SoilProfileGM>().StartErosionsOnProfiles();//set the erosion amount on the soil profile

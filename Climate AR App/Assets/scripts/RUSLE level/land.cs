@@ -8,7 +8,7 @@ public class land : MonoBehaviour
 {
 
     public GameObject treesForCover;
-    public GameObject theLand;
+    public GameObject[] theLand;
     public Toggle button;
     public string text;
 
@@ -27,7 +27,10 @@ public class land : MonoBehaviour
     public void ChangeLandColor(Material color)
     {
         Debug.Log("change land color " + color);
-        theLand.GetComponent<Renderer>().material = color;
+        for (int i = 0; i < theLand.Length; i++)
+        {
+            theLand[i].GetComponent<Renderer>().material = color;
+        }
     }
 
     /**

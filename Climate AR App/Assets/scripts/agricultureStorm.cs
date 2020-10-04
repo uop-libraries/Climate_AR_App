@@ -8,7 +8,8 @@ public class agricultureStorm : MonoBehaviour
     public GameObject rain;
     public GameObject rainSound;
     public GameObject TextFrame;
-    public GameObject landGM;
+    public GameObject badLandGM;
+    public GameObject goodLandGM;
 
     // Start is called before the first frame update
     void Start()
@@ -61,7 +62,8 @@ public class agricultureStorm : MonoBehaviour
     {
         rain.SetActive(true);
         rainSound.SetActive(true);
-        landGM.GetComponent<landGM>().StartErosions();
+        badLandGM.GetComponent<landGM>().StartErosions();
+        goodLandGM.GetComponent<landGM>().StartErosions();
     }
 
     void EndRain()
