@@ -87,6 +87,7 @@ public class SoilProfileGM : MonoBehaviour
      */
     public void StartErosionsOnProfiles()
     {
+        Debug.Log("start the erosion in soil profile GM on object " + this.name);
         healthySoilCubeScriptHolder.GetComponent<SoilCube>().StartErosion();
         unHealthySoilCubeScriptHolder.GetComponent<SoilCube>().StartErosion();
     }

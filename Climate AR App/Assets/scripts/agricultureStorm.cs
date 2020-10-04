@@ -10,6 +10,7 @@ public class agricultureStorm : MonoBehaviour
     public GameObject TextFrame;
     public GameObject badLandGM;
     public GameObject goodLandGM;
+    public GameObject hidePOIArrow;
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +59,9 @@ public class agricultureStorm : MonoBehaviour
         stormClouds.SetActive(false);
     }
 
+    /**
+     * called by animation when the rain starts in the comming storm anim
+     */
     void StartRain()
     {
         rain.SetActive(true);
@@ -70,5 +74,10 @@ public class agricultureStorm : MonoBehaviour
     {
         rain.SetActive(false);
         rainSound.GetComponent<EnviroAudioSource>().FadeOut();
+    }
+
+    public void HidePOIArrow()
+    {
+        hidePOIArrow.SetActive(false);
     }
 }

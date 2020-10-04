@@ -11,9 +11,10 @@ public class landGM : MonoBehaviour
     public string unhealthyChoice;
     public string coveredCrops;
     public string uncoveredCrops;
+    public bool isCoveredFlag;
+
 
     private bool healthyTopsoilSelectedFlag; //make sure the radio toggle button is checked in scene mode
-    private bool isCoveredFlag;
     private float erosionAmount; //used to calc the erosion
     private GameObject currentSelectedObject; //holds the current visable land
     private GameObject soilProfile; 
@@ -28,7 +29,7 @@ public class landGM : MonoBehaviour
     {
         erosionAmount = 0f;
         healthyTopsoilSelectedFlag = true;
-        isCoveredFlag = true;
+
         currentSelectedObject = steepSlopeLand;
         childPathName = "soil profile";
         soilProfileFlat = flatLand.transform.Find(childPathName).gameObject;
@@ -37,6 +38,21 @@ public class landGM : MonoBehaviour
         if (soilProfileFlat == null || soilProfileSlope == null || soilProfileSteepSlope == null)
         {
             Debug.LogError("unable to find child " + childPathName);
+        }
+
+        if (isCoveredFlag)
+        {
+            Debug.Log("isCoveredFlag = true on " + this.name);
+            isCoveredFlag = false;
+            CoveredSelected();
+            //isCoveredFlag is now true
+        }
+        else
+        {
+            isCoveredFlag = true;
+            CoveredSelected();
+            //isCoveredFlag is now false
+
         }
     }
 
@@ -142,7 +158,7 @@ public class landGM : MonoBehaviour
     {
         isCoveredFlag = !isCoveredFlag;
         soilProfile = currentSelectedObject.transform.Find(childPathName).gameObject; //get the soil profile color and then use it to set the rest of the soils and lands
-        SetColorOfProfile(isCoveredFlag); //set the color of the profile
+        SetColorOfProfiles(isCoveredFlag); //set the color of the profile
         currentSoilProfileColor = soilProfile.GetComponent<SoilProfileGM>().GetHealthOfSoilCubeColor(); //get the soil profile color to change the land color
         SetVisabilityOfTreesForAllLands(isCoveredFlag); //set the visability of trees
         SetColorOfSoilForAllLands(currentSoilProfileColor); //changes the land color
@@ -152,7 +168,7 @@ public class landGM : MonoBehaviour
     /**
      * set the color of the soil profile
      */
-    void SetColorOfProfile(bool isHealthy)
+    void SetColorOfProfiles(bool isHealthy)
     {
 
         soilProfileFlat.GetComponent<SoilProfileGM>().SetTopsoilColorToHealthy(isHealthy); //changes the soil profile color
@@ -232,6 +248,10 @@ public class landGM : MonoBehaviour
         if (currentSelectedObject == null)
         {
             Debug.LogError("currentSelectedObject is null");
+        }
+        else
+        {
+            Debug.Log("start erosions! currentSelectedObject " + currentSelectedObject + " this script attached to " + this.name);
         }
         GameObject tempSoilGM;
         tempSoilGM = currentSelectedObject.transform.Find(childPathName).gameObject; //get the soilGM

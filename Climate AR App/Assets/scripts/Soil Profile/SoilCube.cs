@@ -25,7 +25,7 @@ public class SoilCube : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        startingErosionAmount = .9f; //default
     }
 
     /**
@@ -64,7 +64,7 @@ public class SoilCube : MonoBehaviour
     {
         //get animation paramter for speed
         //animations[i].GetComponent<Animator>().SetBool("StartRiverIncrease", true); //start the animation, the string value is a parameter from the animator window
-        
+        Debug.Log(" the erosion is starting on object " + this.name);
         this.GetComponent<Animator>().SetFloat("erosionSpeed", startingErosionAmount); // adjust the speed of animation. this ammount is a multiplied amount
 
         this.GetComponent<Animator>().SetBool("isErosionTime", true);// start the erosion animation
