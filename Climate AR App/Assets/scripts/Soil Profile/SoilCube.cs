@@ -18,9 +18,11 @@ public class SoilCube : MonoBehaviour
     public Material goodSoilColor;
     public Material badSoilColor;
     public GameObject grass;
+    public GameObject MySoilGM;
    
     //public Animator animGreen;
     bool doneWithGreenErosion = false;
+    bool doneWithBrownErosion = false;
     private GameObject Storm;
     // Start is called before the first frame update
     void Start()
@@ -87,7 +89,7 @@ public class SoilCube : MonoBehaviour
     public void DoneWithBrownErosion()
     {
         //stop rain
-        Debug.Log("jjjjjjjjjjjjjjjj Brown erosion is done");
+        //Debug.Log("jjjjjjjjjjjjjjjj Brown erosion is done");
         //Storm.GetComponent<agricultureStorm>().EndStorm();
         //find the storm object dynamically
         Storm = GameObject.FindWithTag("storm");
@@ -97,7 +99,19 @@ public class SoilCube : MonoBehaviour
         }
         else
         {
-            Storm.GetComponent<agricultureStorm>().EndStorm();
+            // Storm.GetComponent<agricultureStorm>().EndStorm();
+            //instead of calling for the end of the strom, need to set a bool to signal to the GM that its done
+            if (this.isActiveAndEnabled) //if the soil profile is visable and done with erosion, then its done
+            {
+                doneWithBrownErosion = true;
+                MySoilGM.GetComponent<SoilProfileGM>().SetErosionOnCubeDone(doneWithBrownErosion);
+
+            }
+            // Debug.Log("MySoilGM.GetComponent<SoilProfileGM>().CheckIfBothErosionsDone() " + MySoilGM.GetComponent<SoilProfileGM>().CheckIfBothErosionsDone());
+            // if (MySoilGM.GetComponent<SoilProfileGM>().CheckIfBothErosionsDone()) //both erosions are done
+            //{
+            //   Storm.GetComponent<agricultureStorm>().EndStorm();
+            // }//check to see if we can end the storm
         }
 
     }
@@ -133,5 +147,10 @@ public class SoilCube : MonoBehaviour
     public float GetErosionAmount()
     {
         return startingErosionAmount;
+    }
+
+    public bool GetIsDoneWithBrownErosion()
+    {
+        return doneWithBrownErosion;
     }
 }

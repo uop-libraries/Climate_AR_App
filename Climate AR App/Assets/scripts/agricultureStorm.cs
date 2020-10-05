@@ -65,7 +65,7 @@ public class agricultureStorm : MonoBehaviour
 
     /**
     * end the storm and sounds.
-    * called by button
+    * called by erosion of soil cube
     */
     public void EndStorm()
     {
@@ -130,6 +130,18 @@ public class agricultureStorm : MonoBehaviour
             pondWaterSteepSloped.SetActive(true);
             pondWaterSteepSloped.GetComponent<Animator>().SetBool("startRaise", true);
             pondRaiseFlagSteep = false;
+        }
+    }
+
+    /**
+     * called by the anim that is having the storm looping
+     */
+    public void CheckIfSoilDoneWithErosions()
+    {
+        if (badLandGM.GetComponent<landGM>().CheckIfSoilGMErosionDone() && goodLandGM.GetComponent<landGM>().CheckIfSoilGMErosionDone())
+        {
+            EndStorm();
+
         }
     }
 }

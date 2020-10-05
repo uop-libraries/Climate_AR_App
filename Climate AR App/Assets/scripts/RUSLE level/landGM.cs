@@ -24,6 +24,7 @@ public class landGM : MonoBehaviour
     private GameObject soilProfileFlat;
     private GameObject soilProfileSlope;
     private GameObject soilProfileSteepSlope;
+    private GameObject tempSoilGM;
     // Start is called before the first frame update
     void Start()
     {
@@ -205,7 +206,6 @@ public class landGM : MonoBehaviour
     public string DoneWithSelection()
     {
         string informText;
-        GameObject tempSoilGM;
         tempSoilGM = currentSelectedObject.transform.Find(childPathName).gameObject; //get the soilGM
         //call the current selected object and get the text attached to it
         informText = currentSelectedObject.GetComponent<land>().GetText();
@@ -256,6 +256,16 @@ public class landGM : MonoBehaviour
         GameObject tempSoilGM;
         tempSoilGM = currentSelectedObject.transform.Find(childPathName).gameObject; //get the soilGM
         tempSoilGM.GetComponent<SoilProfileGM>().StartErosionsOnProfiles();//set the erosion amount on the soil profile
+
+    }
+
+    public bool CheckIfSoilGMErosionDone()
+    {
+        if (tempSoilGM.GetComponent<SoilProfileGM>().GetErosionOnCubeDone())
+        {
+            return true;
+        }
+        return false;
 
     }
 }

@@ -9,7 +9,7 @@ public class DoneWithBrown : MonoBehaviour
     void DoneWithErosion()
     {
         topsoil.GetComponent<SoilCube>().DoneWithBrownErosion();
-        Debug.Log("DoneWithErosion  script on the cube");
+        Debug.Log("DoneWithBrown DoneWithErosion  script on the cube");
     }
 
 

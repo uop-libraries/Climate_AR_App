@@ -13,6 +13,8 @@ public class SoilProfileGM : MonoBehaviour
     public GameObject healthySoilCubeScriptHolder;
     public GameObject unHealthySoilCubeScriptHolder;
 
+    private bool allErosionsDone = false;
+    private bool erosionOnCubeDone = false;
     /**
      * set the top soils health. true show the thick topsoil, false is thing topsoil
      */
@@ -90,5 +92,34 @@ public class SoilProfileGM : MonoBehaviour
         Debug.Log("start the erosion in soil profile GM on object " + this.name);
         healthySoilCubeScriptHolder.GetComponent<SoilCube>().StartErosion();
         unHealthySoilCubeScriptHolder.GetComponent<SoilCube>().StartErosion();
+    }
+
+    /**
+     * if both of the soil profiles are done with erosions then end the storm
+     */
+    public bool CheckIfBothErosionsDone()
+    {
+        Debug.Log("CheckIfBothErosionsDone on object " + this.name);
+        Debug.Log("healthySoilCubeScriptHolder.GetComponent<SoilCube>().GetIsDoneWithBrownErosion() " + healthySoilCubeScriptHolder.GetComponent<SoilCube>().GetIsDoneWithBrownErosion());
+        Debug.Log("unHealthySoilCubeScriptHolder.GetComponent<SoilCube>().GetIsDoneWithBrownErosion() " + unHealthySoilCubeScriptHolder.GetComponent<SoilCube>().GetIsDoneWithBrownErosion());
+        if (healthySoilCubeScriptHolder.GetComponent<SoilCube>().GetIsDoneWithBrownErosion() && unHealthySoilCubeScriptHolder.GetComponent<SoilCube>().GetIsDoneWithBrownErosion())
+        {
+            allErosionsDone = true;
+        }
+
+        return allErosionsDone;
+    }
+
+    /**
+     * visable soil cube is done with erosion
+     */
+    public void SetErosionOnCubeDone(bool isDone)
+    {
+        erosionOnCubeDone = isDone;
+    }
+
+    public bool GetErosionOnCubeDone()
+    {
+        return erosionOnCubeDone;
     }
 }
