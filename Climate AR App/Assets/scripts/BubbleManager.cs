@@ -23,7 +23,7 @@ public class BubbleManager : MonoBehaviour
         {
             visual.SetActive(true);
             this.GetComponent<AudioSource>().Play();
-            Debug.LogError("bubble trigger enter");
+            //Debug.LogError("bubble trigger enter");
         }
 
     }

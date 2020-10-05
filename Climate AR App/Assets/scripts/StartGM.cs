@@ -57,5 +57,13 @@ public class StartGM : MonoBehaviour
         POIs.SetActive(true);
     }
 
+    /** DEPRECATED AudioGM script exists
+     * sets the sounds active or not depending on passed in parameter. 
+     */
+   // public void ToggleSounds(bool soundOn)
+   // {
+     //   sounds.SetActive(soundOn);
+    //}
+
    
 }

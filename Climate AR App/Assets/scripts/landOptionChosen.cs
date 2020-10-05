@@ -13,6 +13,7 @@ public class landOptionChosen : MonoBehaviour
 
     public GameObject infoPopUpCanvas;
     public Text InfoPopupText;
+    public GameObject contentText;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +42,7 @@ public class landOptionChosen : MonoBehaviour
         goodSideCanvas.SetActive(false);
         InfoPopupText.text = goodSideGM.GetComponent<landGM>().DoneWithSelection(); //set the text
         infoPopUpCanvas.SetActive(true); //show the text
+        ResetText();
     }
 
     /**
@@ -49,5 +51,14 @@ public class landOptionChosen : MonoBehaviour
     public void HideInfo()
     {
         infoPopUpCanvas.SetActive(false);
+    }
+
+    /**
+     * reset the text position to the top for when the next RUSTLE options are chosen. 
+     */
+    void ResetText()
+    {
+        contentText.transform.localPosition = new Vector3(contentText.transform.localPosition.x, 0f, contentText.transform.localPosition.z);
+
     }
 }

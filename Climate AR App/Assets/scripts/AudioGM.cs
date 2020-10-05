@@ -24,11 +24,23 @@ public class AudioGM : MonoBehaviour
         
     }
 
-    /**start the sounds in the level
+    /**start a specific sound in the level
     * 
     */
-    public void StartSounds(int i)
+    public void StartSingleSounds(int i)
     {
         sounds[i].SetActive(true);
+    }
+
+    /**
+     * set active all of the sounds in the array
+     */
+    public void ToggleAllSounds(bool setOn)
+    {
+        for (int i = 0; i < sounds.Length; i++)
+        {
+            sounds[i].SetActive(setOn);
+
+        }
     }
 }
