@@ -27,6 +27,7 @@ public class landOptionChosen : MonoBehaviour
     public void DoneWithBadSide()
     {
         Debug.Log("done with bad side");
+        ResetTextPosition();
         badSideCanvas.SetActive(false);
         InfoPopupText.text = badSideGM.GetComponent<landGM>().DoneWithSelection(); //set the text
         infoPopUpCanvas.SetActive(true); //show the text
@@ -39,10 +40,10 @@ public class landOptionChosen : MonoBehaviour
     public void DoneWithGoodSide()
     {
         Debug.Log("done with good side");
+        ResetTextPosition();
         goodSideCanvas.SetActive(false);
         InfoPopupText.text = goodSideGM.GetComponent<landGM>().DoneWithSelection(); //set the text
         infoPopUpCanvas.SetActive(true); //show the text
-        ResetText();
     }
 
     /**
@@ -56,7 +57,7 @@ public class landOptionChosen : MonoBehaviour
     /**
      * reset the text position to the top for when the next RUSTLE options are chosen. 
      */
-    void ResetText()
+    void ResetTextPosition()
     {
         contentText.transform.localPosition = new Vector3(contentText.transform.localPosition.x, 0f, contentText.transform.localPosition.z);
 

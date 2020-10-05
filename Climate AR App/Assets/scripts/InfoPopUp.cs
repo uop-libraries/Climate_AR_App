@@ -11,10 +11,19 @@ public class InfoPopUp : MonoBehaviour
     public bool specialEventPOI;
     public string textForButton; //what the button will say "continue" "close" "start" etc
     public GameObject specialEvent;
+    public bool showSpecialOnce;
     public GameObject planeFinder;
     public float ColliderRadius;
     public bool lastPOI; //on the inspector, set true if it is the last POI and you want to bring user to main menu
+    private bool showed;//used to handle the logic so the special POI is only shown once (unless restarted). 
+    //this prevents the user from walking into th detection zone and retriggering the pop up which can get annoying.
     // Start is called before the first frame update
+
+    private void Start()
+    {
+        showed = false;
+
+    }
     void Awake() //want the radius of the collider set before they are set active
     {
         //instead of adjusting the camera's collider lets try it with the POI
@@ -35,8 +44,19 @@ public class InfoPopUp : MonoBehaviour
                 planeFinder.GetComponent<AnchorInputListenerBehaviour>().enabled = false;
 
             }
+            else if (showSpecialOnce) //special event time, show once
+            {
+                if (!showed)
+                {
+                    specialEvent.SetActive(true);
+                    planeFinder.GetComponent<AnchorInputListenerBehaviour>().enabled = true;
+                    showed = true;
+                }
+
+            }
             else //special event time
             {
+            
                 specialEvent.SetActive(true);
                 planeFinder.GetComponent<AnchorInputListenerBehaviour>().enabled = true;
 

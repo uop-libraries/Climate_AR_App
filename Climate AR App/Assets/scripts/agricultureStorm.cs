@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * handles the clouds coming into the farm scene. 
+ * activates the rain object
+ * hanldes the pond waters
+ * many of the functions are called by the animator
+ */
 public class agricultureStorm : MonoBehaviour
 {
     public GameObject stormClouds;
@@ -11,6 +17,13 @@ public class agricultureStorm : MonoBehaviour
     public GameObject badLandGM;
     public GameObject goodLandGM;
     public GameObject hidePOIArrow;
+    public GameObject pondWaterSloped; //only for the sloped good managed side
+    public GameObject pondWaterSteepSloped; //only for the steep sloped good managed side
+    public GameObject hideCanvas; //keep in mind that infoPOPUp references this canvas too
+
+    private bool pondRaiseFlag; //ensures water anim is called only once
+    private bool pondRaiseFlagSteep; //ensures water anim is called only once
+    private bool showStartButtonOnce;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +32,11 @@ public class agricultureStorm : MonoBehaviour
         rain.SetActive(false);
         rainSound.SetActive(false);
         TextFrame.SetActive(false);
+        pondRaiseFlag = true;
+        pondRaiseFlagSteep = true;
+        pondWaterSloped.SetActive(false);
+        pondWaterSteepSloped.SetActive(false);
+        showStartButtonOnce = true;
     }
 
     /**
@@ -76,8 +94,42 @@ public class agricultureStorm : MonoBehaviour
         rainSound.GetComponent<EnviroAudioSource>().FadeOut();
     }
 
-    public void HidePOIArrow()
+    /**
+     * hides the POI arrow and the storm button canvas so the user can enjoy the storm
+     */
+    public void HidePOIArrowAndCanvas()
     {
-        hidePOIArrow.SetActive(false);
+        if (showStartButtonOnce)
+        {
+            hidePOIArrow.SetActive(false);
+            hideCanvas.SetActive(false);
+            showStartButtonOnce = false;
+        }
+    }
+
+    /**
+     * called by animation
+     */
+    public void StartSlopePond()
+    {
+        if (pondRaiseFlag)
+        {
+            pondWaterSloped.SetActive(true);
+            pondWaterSloped.GetComponent<Animator>().SetBool("startRaise", true);
+            pondRaiseFlag = false;
+        }
+    }
+
+    /**
+      * called by animation
+      */
+    public void StartSteepSlopePond()
+    {
+        if (pondRaiseFlagSteep)
+        {
+            pondWaterSteepSloped.SetActive(true);
+            pondWaterSteepSloped.GetComponent<Animator>().SetBool("startRaise", true);
+            pondRaiseFlagSteep = false;
+        }
     }
 }
