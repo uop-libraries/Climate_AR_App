@@ -15,6 +15,7 @@ public class StartGM : MonoBehaviour
     public GameObject bubbles;
     public GameObject POIs;
     public GameObject plane;
+    public GameObject helpCanvas;
     bool doOnceFlag; //used to show instructions once at the start of the scene.
     void Start()
     {
@@ -26,6 +27,7 @@ public class StartGM : MonoBehaviour
         }
         POIs.SetActive(false);
         instructionsForPOI.SetActive(false);
+        helpCanvas.SetActive(false);
         doOnceFlag = true;
     }
 
@@ -81,6 +83,11 @@ public class StartGM : MonoBehaviour
     {
         plane.GetComponent<AnchorInputListenerBehaviour>().enabled = setActive;
         plane.GetComponent<PlaneFinderBehaviour>().enabled = setActive;
+    }
+
+    public void SetActiveHelpCanvas(bool isActive)
+    {
+        helpCanvas.SetActive(isActive);
     }
     /** DEPRECATED AudioGM script exists
      * 
