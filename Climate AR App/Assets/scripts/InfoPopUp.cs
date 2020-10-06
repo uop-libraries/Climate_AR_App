@@ -52,6 +52,7 @@ public class InfoPopUp : MonoBehaviour
                     specialEvent.SetActive(true);
                     planeFinder.GetComponent<AnchorInputListenerBehaviour>().enabled = true;
                     showed = true;
+                    Debug.Log("info pop up Showed is " + showed);
                 }
 
             }

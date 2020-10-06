@@ -106,8 +106,11 @@ MonoBehaviour:
   specialEventPOI: 0
   textForButton: 
   specialEvent: {fileID: 0}
+  showSpecialOnce: 0
   planeFinder: {fileID: 0}
   ColliderRadius: 0.08
+  lastPOI: 0
+  arrow: {fileID: 7227304533795115175}
 --- !u!54 &7489074928057767535
 Rigidbody:
   m_ObjectHideFlags: 0
