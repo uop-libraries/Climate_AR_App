@@ -58,6 +58,7 @@ public class StartGM : MonoBehaviour
     }
 
     /** DEPRECATED AudioGM script exists
+     * 
      * sets the sounds active or not depending on passed in parameter. 
      */
    // public void ToggleSounds(bool soundOn)

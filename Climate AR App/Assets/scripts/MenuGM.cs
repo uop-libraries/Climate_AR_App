@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MenuGM : MonoBehaviour
 {
+    public GameObject loading;
     // Start is called before the first frame update
     void Start()
     {
-        
+        loading.SetActive(false);
     }
 
     // Update is called once per frame
@@ -19,7 +20,8 @@ public class MenuGM : MonoBehaviour
 
     public void SceneSelection(string sceneName)
     {
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+        loading.SetActive(true);
+        SceneManager.LoadScene(sceneName);
     }
 
     public void CloseApp()
