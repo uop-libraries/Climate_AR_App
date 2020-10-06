@@ -15,6 +15,9 @@ public class landOptionChosen : MonoBehaviour
     public Text InfoPopupText;
     public GameObject contentText;
 
+    public GameObject reselectCanvas;
+    public GameObject reselectPOIArrow;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,5 +64,28 @@ public class landOptionChosen : MonoBehaviour
     {
         contentText.transform.localPosition = new Vector3(contentText.transform.localPosition.x, 0f, contentText.transform.localPosition.z);
 
+    }
+
+    /**
+     * reset the soils
+     */
+    public void ResetSoils()
+    {
+        badSideGM.GetComponent<landGM>().ResetSoilsFromLandGM();
+        goodSideGM.GetComponent<landGM>().ResetSoilsFromLandGM();
+
+    }
+
+    /**
+     * set the view of the canvas to reselect or be done of RUSLE
+     */
+    public void SetReselectCanvas(bool show)
+    {
+        reselectCanvas.SetActive(show);
+    }
+
+    public void SetActiveReselectPOIArrow(bool isActive)
+    {
+        reselectPOIArrow.SetActive(isActive);
     }
 }

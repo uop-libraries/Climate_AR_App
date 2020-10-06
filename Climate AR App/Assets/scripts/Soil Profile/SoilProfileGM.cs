@@ -122,4 +122,13 @@ public class SoilProfileGM : MonoBehaviour
     {
         return erosionOnCubeDone;
     }
+
+    /**
+     * called by the storm script
+     */
+    public void ResetSoilsFromGM()
+    {
+        healthySoilCubeScriptHolder.GetComponent<SoilCube>().ResetAllSoils();
+        unHealthySoilCubeScriptHolder.GetComponent<SoilCube>().ResetAllSoils();
+    }
 }

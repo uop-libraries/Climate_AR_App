@@ -15,6 +15,7 @@ public class InfoPopUp : MonoBehaviour
     public GameObject planeFinder;
     public float ColliderRadius;
     public bool lastPOI; //on the inspector, set true if it is the last POI and you want to bring user to main menu
+    public GameObject arrow;
     private bool showed;//used to handle the logic so the special POI is only shown once (unless restarted). 
     //this prevents the user from walking into th detection zone and retriggering the pop up which can get annoying.
     // Start is called before the first frame update
@@ -79,5 +80,19 @@ public class InfoPopUp : MonoBehaviour
         return lastPOI;
     }
 
+
+    /**
+     * used to reset the POI, make the show param false to reset
+     */
+    public void SetShowed(bool show)
+    {
+        Debug.Log("SetShowed " + show);
+        showed = show;
+    }
+
+    public void SetArrowActive(bool isActive)
+    {
+        arrow.SetActive(isActive);
+    }
 
 }

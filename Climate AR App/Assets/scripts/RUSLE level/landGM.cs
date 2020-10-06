@@ -268,4 +268,14 @@ public class landGM : MonoBehaviour
         return false;
 
     }
+
+    /**
+     * reset
+     */
+    public void ResetSoilsFromLandGM()
+    {
+        soilProfileFlat.GetComponent<SoilProfileGM>().ResetSoilsFromGM();
+        soilProfileSlope.GetComponent<SoilProfileGM>().ResetSoilsFromGM();
+        soilProfileSteepSlope.GetComponent<SoilProfileGM>().ResetSoilsFromGM();
+    }
 }

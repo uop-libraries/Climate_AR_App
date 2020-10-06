@@ -119,6 +119,14 @@ public class PopUpHandler : MonoBehaviour
         contentText.transform.localPosition = new Vector3(contentText.transform.localPosition.x, 0f, contentText.transform.localPosition.z);
     }
 
-
+    /**
+     * used to reset the poi for farm storm event
+     */
+    public void SetCurrentPOIIndex(int number)
+    {
+        Debug.Log("set the currentPOI to " + number);
+        currentPOIIndex = number;
+        ShowPOIAtIndex(currentPOIIndex);
+    }
 
 }

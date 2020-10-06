@@ -20,6 +20,8 @@ public class agricultureStorm : MonoBehaviour
     public GameObject pondWaterSloped; //only for the sloped good managed side
     public GameObject pondWaterSteepSloped; //only for the steep sloped good managed side
     public GameObject hideCanvas; //keep in mind that infoPOPUp references this canvas too
+    public GameObject popUpGM;
+
 
     private bool pondRaiseFlag; //ensures water anim is called only once
     private bool pondRaiseFlagSteep; //ensures water anim is called only once
@@ -70,6 +72,7 @@ public class agricultureStorm : MonoBehaviour
     public void EndStorm()
     {
         stormClouds.GetComponent<Animator>().SetBool("StartStorm", false); //start the animation
+        popUpGM.GetComponent<PopUpHandler>().DoneWithSpecialEvent();
     }
 
     void HideClouds()
@@ -79,6 +82,7 @@ public class agricultureStorm : MonoBehaviour
 
     /**
      * called by animation when the rain starts in the comming storm anim
+     * starts the erosions
      */
     void StartRain()
     {
@@ -96,6 +100,7 @@ public class agricultureStorm : MonoBehaviour
 
     /**
      * hides the POI arrow and the storm button canvas so the user can enjoy the storm
+     * will only show if showStartButtonOnce is true
      */
     public void HidePOIArrowAndCanvas()
     {
@@ -105,6 +110,18 @@ public class agricultureStorm : MonoBehaviour
             hideCanvas.SetActive(false);
             showStartButtonOnce = false;
         }
+    }
+
+    /**
+  * show the POI arrow and the storm button canvas so the user can start the storm
+  * called by button
+  */
+    public void ShowPOIArrowAndCanvas()
+    {
+      
+            hidePOIArrow.SetActive(true);
+            hideCanvas.SetActive(true);
+        
     }
 
     /**
@@ -143,5 +160,15 @@ public class agricultureStorm : MonoBehaviour
             EndStorm();
 
         }
+    }
+
+    /**
+     * restart the storm for the user to reselect their options
+     */
+    public void RestartStormCanvasAndPOI()
+    {
+        //StartStorm();
+        showStartButtonOnce = true;
+        HidePOIArrowAndCanvas();
     }
 }
