@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 /**
  * Handles the start of the application. Once the level is placed on the plane, then this script handles showing instructions and sounds. 
@@ -57,14 +57,23 @@ public class StartGM : MonoBehaviour
         POIs.SetActive(true);
     }
 
+    /**
+     *  called by button. the scene is also changed in pop up handler
+     */
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene("mainMenu");
+
+    }
+
     /** DEPRECATED AudioGM script exists
      * 
      * sets the sounds active or not depending on passed in parameter. 
      */
-   // public void ToggleSounds(bool soundOn)
-   // {
-     //   sounds.SetActive(soundOn);
+    // public void ToggleSounds(bool soundOn)
+    // {
+    //   sounds.SetActive(soundOn);
     //}
 
-   
+
 }

@@ -37,12 +37,13 @@ public class InfoPopUp : MonoBehaviour
     {
         if (other.CompareTag("MainCamera"))
         {
+            planeFinder.GetComponent<AnchorInputListenerBehaviour>().enabled = false;
             if (!specialEventPOI)
             {
                 popUp.SetActive(true);   
                 popUptext.text = GetComponent<Text>().text;
                 PopUPGM.GetComponent<PopUpHandler>().ResetTextPosition();
-                planeFinder.GetComponent<AnchorInputListenerBehaviour>().enabled = false;
+                //planeFinder.GetComponent<AnchorInputListenerBehaviour>().enabled = false;
 
             }
             else if (showSpecialOnce) //special event time, show once
@@ -50,7 +51,7 @@ public class InfoPopUp : MonoBehaviour
                 if (!showed)
                 {
                     specialEvent.SetActive(true);
-                    planeFinder.GetComponent<AnchorInputListenerBehaviour>().enabled = true;
+                    //planeFinder.GetComponent<AnchorInputListenerBehaviour>().enabled = false;
                     showed = true;
                     Debug.Log("info pop up Showed is " + showed);
                 }
@@ -60,7 +61,7 @@ public class InfoPopUp : MonoBehaviour
             {
             
                 specialEvent.SetActive(true);
-                planeFinder.GetComponent<AnchorInputListenerBehaviour>().enabled = true;
+                //planeFinder.GetComponent<AnchorInputListenerBehaviour>().enabled = false;
 
             }
 
