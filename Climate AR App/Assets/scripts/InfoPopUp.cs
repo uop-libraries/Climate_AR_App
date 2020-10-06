@@ -37,7 +37,7 @@ public class InfoPopUp : MonoBehaviour
     {
         if (other.CompareTag("MainCamera"))
         {
-            planeFinder.GetComponent<AnchorInputListenerBehaviour>().enabled = false;
+            //SetPlaneView(false);
             if (!specialEventPOI)
             {
                 popUp.SetActive(true);   
@@ -95,6 +95,11 @@ public class InfoPopUp : MonoBehaviour
     public void SetArrowActive(bool isActive)
     {
         arrow.SetActive(isActive);
+    }
+
+    public void SetPlaneView(bool setActive)
+    {
+        planeFinder.GetComponent<AnchorInputListenerBehaviour>().enabled = setActive;
     }
 
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Vuforia;
 
 /**
  * Handles the start of the application. Once the level is placed on the plane, then this script handles showing instructions and sounds. 
@@ -13,6 +14,7 @@ public class StartGM : MonoBehaviour
     public GameObject instructionsForPOI;
     public GameObject bubbles;
     public GameObject POIs;
+    public GameObject plane;
     bool doOnceFlag; //used to show instructions once at the start of the scene.
     void Start()
     {
@@ -33,6 +35,12 @@ public class StartGM : MonoBehaviour
     public void CloseWelcomePopUp()
     {
         welcomePopup.SetActive(false);
+
+    }
+
+    public void OpenWelcomePopUp()
+    {
+        welcomePopup.SetActive(true);
 
     }
 
@@ -66,6 +74,14 @@ public class StartGM : MonoBehaviour
 
     }
 
+    /**
+     * handles the logic to hide the plane when the level is placed. called by placements and button
+     */
+    public void SetActivePanelStartGM(bool setActive)
+    {
+        plane.GetComponent<AnchorInputListenerBehaviour>().enabled = setActive;
+        plane.GetComponent<PlaneFinderBehaviour>().enabled = setActive;
+    }
     /** DEPRECATED AudioGM script exists
      * 
      * sets the sounds active or not depending on passed in parameter. 
