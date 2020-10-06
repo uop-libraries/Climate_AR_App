@@ -61,8 +61,7 @@ public class agricultureStorm : MonoBehaviour
         stormClouds.SetActive(true);
         stormClouds.GetComponent<Animator>().SetBool("StartStorm", true); //start the animation
        // rain.SetActive(true);
-        rainSound.GetComponent<EnviroAudioSource>().StartRainSound();
-        rainSound.GetComponent<EnviroAudioSource>().playOnStart = true;
+
     }
 
     /**
@@ -90,6 +89,8 @@ public class agricultureStorm : MonoBehaviour
         rainSound.SetActive(true);
         badLandGM.GetComponent<landGM>().StartErosions();
         goodLandGM.GetComponent<landGM>().StartErosions();
+        rainSound.GetComponent<EnviroAudioSource>().StartRainSound();
+        rainSound.GetComponent<EnviroAudioSource>().playOnStart = true;
     }
 
     void EndRain()

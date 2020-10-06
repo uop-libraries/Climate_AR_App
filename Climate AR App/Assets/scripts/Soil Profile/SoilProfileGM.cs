@@ -106,6 +106,10 @@ public class SoilProfileGM : MonoBehaviour
         {
             allErosionsDone = true;
         }
+        else
+        {
+            allErosionsDone = false;
+        }
 
         return allErosionsDone;
     }
@@ -130,5 +134,7 @@ public class SoilProfileGM : MonoBehaviour
     {
         healthySoilCubeScriptHolder.GetComponent<SoilCube>().ResetAllSoils();
         unHealthySoilCubeScriptHolder.GetComponent<SoilCube>().ResetAllSoils();
+        allErosionsDone = false;
+        //SetErosionOnCubeDone(false); //testing to see if I can do this soil profile
     }
 }

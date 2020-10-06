@@ -67,7 +67,7 @@ public class landOptionChosen : MonoBehaviour
     }
 
     /**
-     * reset the soils
+     * reset the soils, called by button
      */
     public void ResetSoils()
     {

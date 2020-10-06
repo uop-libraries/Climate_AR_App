@@ -158,6 +158,8 @@ public class SoilCube : MonoBehaviour
         grass.SetActive(true);
         this.GetComponent<Renderer>().enabled = true; //show the green cube
         doneWithBrownErosion = false;
+        MySoilGM.GetComponent<SoilProfileGM>().SetErosionOnCubeDone(doneWithBrownErosion);
+
 
     }
 }

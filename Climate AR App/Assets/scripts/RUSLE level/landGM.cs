@@ -277,5 +277,6 @@ public class landGM : MonoBehaviour
         soilProfileFlat.GetComponent<SoilProfileGM>().ResetSoilsFromGM();
         soilProfileSlope.GetComponent<SoilProfileGM>().ResetSoilsFromGM();
         soilProfileSteepSlope.GetComponent<SoilProfileGM>().ResetSoilsFromGM();
+        Debug.Log("Restart the soils from land GM");
     }
 }
