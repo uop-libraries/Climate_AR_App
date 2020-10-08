@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * handles the switching between the starting farms with barns to the farms on RUSLE choices.
+ */
 public class farmGM : MonoBehaviour
 {
     public GameObject goodFarm;
@@ -14,12 +17,9 @@ public class farmGM : MonoBehaviour
         SetActiveStartingFarmssAndOptionsFarms(true);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    /**
+     * swtich from the starting farms with barns, to the RUSLE farms
+     */
     public void SetActiveStartingFarmssAndOptionsFarms(bool flag)
     {
         goodFarm.SetActive(flag);

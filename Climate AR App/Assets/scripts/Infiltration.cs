@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*handles infiltration of the ground
- * //neeed to rename this scr
+ * //neeed to rename this script
+ * in the future update, need to refactor this code and others to use anim events and not have things in the update function
  * helpful reference image https://www.google.com/imgres?imgurl=https%3A%2F%2Fengineering.purdue.edu%2Fmapserve%2FLTHIA7%2Fimages%2Frunoff_vs_infil_chart.gif&imgrefurl=https%3A%2F%2Fengineering.purdue.edu%2Fmapserve%2FLTHIA7%2Fdocumentation%2Frunoff.htm&tbnid=7iW4Nw1vZhw8YM&vet=12ahUKEwjvt6y7mdDqAhVDJX0KHSQzAy0QMygNegUIARCzAQ..i&docid=bLwZPOG3rZY4oM&w=399&h=201&q=soil%20infiltration%20and%20soil%20runoff%20graph&ved=2ahUKEwjvt6y7mdDqAhVDJX0KHSQzAy0QMygNegUIARCzAQ
  */
 public class Infiltration : MonoBehaviour
@@ -72,9 +73,9 @@ public class Infiltration : MonoBehaviour
                     infiltration = 0;
                 }
 
-                Debug.Log("ww this.gameObject.transform.localPosition.y " + this.gameObject.transform.localPosition.y);
+                //Debug.Log("ww this.gameObject.transform.localPosition.y " + this.gameObject.transform.localPosition.y);
 
-                    Debug.Log("ww Runoff " + runoff);
+                    //Debug.Log("ww Runoff " + runoff);
                 if (runoff <= (startInifiltration - 1f))
                {
                     runoff += decreaseAmount;
@@ -95,7 +96,7 @@ public class Infiltration : MonoBehaviour
             {
                 infiltration += decreaseAmount + (decreaseAmount/2);
                 AdjustWaterLevel(-3f * rain); //make the water lvl go down since it is soaking up into the "earth". the math in the denominator is to slow down the decrease
-                Debug.Log("qwe infiltration is " + infiltration + " startInifiltration " + startInifiltration);
+                //Debug.Log("qwe infiltration is " + infiltration + " startInifiltration " + startInifiltration);
             }
             else
             {
@@ -129,18 +130,29 @@ public class Infiltration : MonoBehaviour
         }
 
     }
+
+    /**
+     * reset the water level
+     * this should be an anim, not by position... need to change in future update
+     */
     void ResetWaterLevel()
     {
         Vector3 newPos = new Vector3(this.transform.localPosition.x, minLevelOfWater, this.transform.localPosition.z);
         gameObject.transform.localPosition = newPos;
     }
 
+    /**
+     * get the infiltration amount
+     */
     public float GetInfiltration()
     {
         return infiltration;
     }
 
 
+    /**
+     * get the run off amount
+     */
     public float GetRunoff()
     {
         return runoff;

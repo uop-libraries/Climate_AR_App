@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Vuforia;
+
+/**
+ * placed on each POI arrow.
+ * holds the text, collider radius, button string, arrow visability, AR plane detection object, special events POI logic and if the POI is the last one.
+ * handles the logic for colliding. checks to see of the colliding object is the camera
+ */
 public class InfoPopUp : MonoBehaviour
 {
     public GameObject popUp; //the pop up for the user to read
@@ -68,6 +74,9 @@ public class InfoPopUp : MonoBehaviour
         }
     }
 
+    /**
+     * done with the special event so need to hide it
+     */
     public void HideSpecialEvent()
     {
         if (specialEvent != null)
@@ -77,6 +86,9 @@ public class InfoPopUp : MonoBehaviour
         }
     }
 
+    /**
+     * getter to check if the POI is the last POI. if it is, then end scene in the popup handler
+     */
     public bool GetLastPOI()
     {
         return lastPOI;
@@ -92,11 +104,17 @@ public class InfoPopUp : MonoBehaviour
         showed = show;
     }
 
+    /**
+     * the arrow visability
+     */
     public void SetArrowActive(bool isActive)
     {
         arrow.SetActive(isActive);
     }
 
+    /**
+    * the AR plance detection visability
+    */
     public void SetPlaneView(bool setActive)
     {
         planeFinder.GetComponent<AnchorInputListenerBehaviour>().enabled = setActive;

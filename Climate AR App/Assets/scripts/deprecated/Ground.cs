@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//***********************NOT IN USE***************************
 /* Ground
  * handles the characteristics of each ground area in the level.
  * not sure if this handles the river area too...that will need to be addressed
