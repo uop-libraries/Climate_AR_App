@@ -5,6 +5,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+
+/**
+ * handles the rain information and water amount to the land
+ */
 public class HydroGraphDataRain : MonoBehaviour
 {
     public GraphChart Graph;
@@ -76,25 +80,41 @@ public class HydroGraphDataRain : MonoBehaviour
         }
     }
 
+    /**
+     * get the bool to check of the rain is peaked
+     */
     public bool GetRainPeakedBool()
     {
         return rainIsPeaked;
     }
 
+    /**
+     * get the water level X value
+     */
     public float GetWaterLevelXValue()
     {
         return waterLevelXValue;
     }
 
+    /**
+  * get the water level Y value
+  */
     public float GetWaterLevelYValue()
     {
         return waterLevelYValue;
     }
 
+    /**
+     * get the bool to check if the rain is decreasing or going away
+     */
     public bool getRainIsDecreasing()
     {
         return rainIsDecreasing;
     }
+
+    /**
+    * set the start graphs by passed in parameter
+    */
     public void setStartGraph(bool value)
     {
         startGraph = value;

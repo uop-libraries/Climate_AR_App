@@ -6,16 +6,17 @@ using Vuforia;
 
 /**
  * Handles the start of the application. Once the level is placed on the plane, then this script handles showing instructions and sounds. 
+ * show the welcome and instructions
  */
 public class StartGM : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject welcomePopup;
     public GameObject instructionsForPOI;
-    public GameObject bubbles;
+    public GameObject bubbles; //used in the urban level
     public GameObject POIs;
-    public GameObject plane;
-    public GameObject helpCanvas;
+    public GameObject plane; //the AR place detection and handler object
+    public GameObject helpCanvas; //show this until the user places the level
     bool doOnceFlag; //used to show instructions once at the start of the scene.
     void Start()
     {
@@ -40,6 +41,9 @@ public class StartGM : MonoBehaviour
 
     }
 
+    /**
+     * open the welcome pop up
+     */
     public void OpenWelcomePopUp()
     {
         welcomePopup.SetActive(true);

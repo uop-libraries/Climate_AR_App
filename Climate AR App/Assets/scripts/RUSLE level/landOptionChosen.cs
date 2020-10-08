@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/**
+ * holds the reference to the good and bad land GM and the canvases along with them.
+ * once the good or bad land is chosen, then this script will pop up the info canvas to learn 
+ * also handles the reselect canvas and arrow
+ */
 public class landOptionChosen : MonoBehaviour
 {
     public GameObject badSideCanvas;
@@ -29,7 +34,7 @@ public class landOptionChosen : MonoBehaviour
      */
     public void DoneWithBadSide()
     {
-        Debug.Log("done with bad side");
+        //Debug.Log("done with bad side");
         ResetTextPosition();
         badSideCanvas.SetActive(false);
         InfoPopupText.text = badSideGM.GetComponent<landGM>().DoneWithSelection(); //set the text
@@ -42,7 +47,7 @@ public class landOptionChosen : MonoBehaviour
     */
     public void DoneWithGoodSide()
     {
-        Debug.Log("done with good side");
+        //Debug.Log("done with good side");
         ResetTextPosition();
         goodSideCanvas.SetActive(false);
         InfoPopupText.text = goodSideGM.GetComponent<landGM>().DoneWithSelection(); //set the text
@@ -84,6 +89,9 @@ public class landOptionChosen : MonoBehaviour
         reselectCanvas.SetActive(show);
     }
 
+    /**
+     * handles the visability of the arrow showen after the storm is completed
+     */
     public void SetActiveReselectPOIArrow(bool isActive)
     {
         reselectPOIArrow.SetActive(isActive);

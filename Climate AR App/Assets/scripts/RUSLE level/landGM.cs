@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/**
+ * there should be two of these in the scene, one for the good side and one for the bad/poor side
+ * the landGm contains reference for each land style (which contain the land script on those object) 
+ *             handles the logic/function call for when the RUSLE option buttons are clicked   
+ *  depending on what button is clicked, certain function calls will be called and setactive or deactive objects
+ */
 public class landGM : MonoBehaviour
 {
     public GameObject flatLand;
@@ -18,7 +25,7 @@ public class landGM : MonoBehaviour
     private float erosionAmount; //used to calc the erosion
     private GameObject currentSelectedObject; //holds the current visable land
     private GameObject soilProfile; 
-    private string childPathName;
+    private string childPathName; //find the soil profile on the each land
     private Material currentSoilProfileColor;
 
     private GameObject soilProfileFlat;
@@ -259,6 +266,11 @@ public class landGM : MonoBehaviour
 
     }
 
+    /**
+     * check if the current selected soil is done with erosion
+     * ONLY call this function after the selection of the soil is completed. 
+     * must only check the current (in this case temp soil gm) because we only care about the visable eroding soil
+     */
     public bool CheckIfSoilGMErosionDone()
     {
         if (tempSoilGM.GetComponent<SoilProfileGM>().GetErosionOnCubeDone())
@@ -270,7 +282,11 @@ public class landGM : MonoBehaviour
     }
 
     /**
-     * reset
+     * reset the soils incase the user wants to pick again. 
+     * this is part of the bridge from landoptionchosen to the soils.
+     * landoption chosen contains the landGM for both good and bad
+     * the landGM contains references to the soilGMs
+     * the soilGMS contains reference to each soil profile
      */
     public void ResetSoilsFromLandGM()
     {

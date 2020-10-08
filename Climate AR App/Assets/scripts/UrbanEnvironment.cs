@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * handles the storm and graph stuff for the urban level.
+ * handles the clouds, rains and drainage water blockage
+ * in update the clouds grown and certain things happen during the storm. triggers animations bool flags etc
+ * NOTE should change this to be triggered by animation event
+ */
 public class UrbanEnvironment : MonoBehaviour
 {
     //public GameObject cityWater;
@@ -116,11 +122,10 @@ public class UrbanEnvironment : MonoBehaviour
 
     }
 
-    // public float GetTotalRainFallAmount()
-    //{
-    //     return totalRainFallAmount;
-    //}
 
+    /**
+     * get the bool value if the storm is happening
+     */
     public bool GetIsStormHappening()
     {
         return stormHappening;

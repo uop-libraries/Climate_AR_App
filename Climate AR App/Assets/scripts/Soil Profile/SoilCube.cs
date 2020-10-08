@@ -85,7 +85,9 @@ public class SoilCube : MonoBehaviour
         this.GetComponent<Renderer>().enabled = false; //hide the green cube
     }
 
-
+    /**
+     * when the animation on the brown soil is done then this function is called to signal that the erosion is done
+     */
     public void DoneWithBrownErosion()
     {
   

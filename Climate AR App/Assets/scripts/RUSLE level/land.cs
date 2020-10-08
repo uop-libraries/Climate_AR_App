@@ -4,13 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/** deal with RUSLE and holds the info of the land
+ *  this script is place on each land style (sloped, flat etc)
+ *  often called by landGM
+ */
 public class land : MonoBehaviour
 {
 
-    public GameObject treesForCover;
+    public GameObject treesForCover; //called and used by landGM in SetVisabilityOfTreesForAllLands()
     public GameObject[] theLand;
     public Toggle button;
-    public string text;
+    public string text; // the text that shows up after the user selects the land
 
     /**
      * changes the visability

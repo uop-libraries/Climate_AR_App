@@ -4,6 +4,11 @@ using UnityEngine;
 using ChartAndGraph;
 using System;
 using Random = UnityEngine.Random;
+
+/**
+ * handle the water raising on the land for both the city section and the forest section.
+ * also feeds the data into the graph 
+ */
 public class HydroGraphLands : MonoBehaviour
 {
     public GraphChart Graph;
