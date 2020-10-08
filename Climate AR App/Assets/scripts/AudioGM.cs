@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Audio manager
+ * mainly used in the urban level
+ * requries an array of gameoobjects with the assumption those objects have an audio source component
+ * can toggle active on all objects in array or at a specific index
+ */
 public class AudioGM : MonoBehaviour
 {
 
@@ -18,11 +24,6 @@ public class AudioGM : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     /**start a specific sound in the level
     * 
