@@ -1264,7 +1264,7 @@ MonoBehaviour:
   m_Text: "<b>Developer and project lead</b>\r\n\tKeely Canniff\r\n<b>Geological analyst
     and head researcher</b>\r\n\tSophia Dew-Hiersoux\r\n<b>Special thanks to:</b>\r\n\tUniversity
     of the Pacific Libraries\r\n\t\t&\r\n\tDepartment of Geological and Environmental
-    Sciences at University of the Pacific\r\n\r\n<b>Asset Credits</b>\r\nUltimate
+    Sciences at University of the Pacific\r\n\r\n<b>Asset Credits</b>\r\nVuforia\nUltimate
     Low Poly packs by Polyperfect\r\nLow Poly Water GPU by Jolix\r\nGraph And Chart
     by BitSplash Interactive\r\nPOI arrow by Bharadwaj B\r\nClick audio by broumbroum\r\n<i>City
     Level</i>\r\n\tFactory 3D model by respektytreal\r\n\tBus Stop by Tiny Man\r\n\tOpen
@@ -1579,7 +1579,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1146048392}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.18330893
+  m_Size: 0.18025157
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2830,7 +2830,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1809057375}
   m_Layer: 5
-  m_Name: extra long text
+  m_Name: credits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
