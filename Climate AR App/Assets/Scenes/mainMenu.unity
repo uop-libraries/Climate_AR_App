@@ -1264,15 +1264,17 @@ MonoBehaviour:
   m_Text: "<b>Developer and project lead</b>\r\n\tKeely Canniff\r\n<b>Geological analyst
     and head researcher</b>\r\n\tSophia Dew-Hiersoux\r\n<b>Special thanks to:</b>\r\n\tUniversity
     of the Pacific Libraries\r\n\t\t&\r\n\tDepartment of Geological and Environmental
-    Sciences at University of the Pacific\r\n\r\n<b>Asset Credits</b>\r\nVuforia\nUltimate
+    Sciences at University of the Pacific\r\n\r\n<b>Asset Credits</b>\r\nVuforia\r\nUltimate
     Low Poly packs by Polyperfect\r\nLow Poly Water GPU by Jolix\r\nGraph And Chart
     by BitSplash Interactive\r\nPOI arrow by Bharadwaj B\r\nClick audio by broumbroum\r\n<i>City
     Level</i>\r\n\tFactory 3D model by respektytreal\r\n\tBus Stop by Tiny Man\r\n\tOpen
     Dumpster by Jarlan Perez\r\n\tClosed dumpster by Google\r\n\tTrash can by Google\r\n\tDrain
     by Jens Kull\r\n\tPie chart audio by nsstudios\r\n\tPark audio by moonfisher\r\n\tForest
-    audio by GirlWithSoundRecorder\r\n\tCity audio by https://www.zapsplat.com\r\n\tOcean
-    audio by InspectorJ\r\n<i> Agriculture Level</i>\r\n\tTurnip by Google\r\n\tWheat
-    by Google\r\n\tTree roots by Google\r\n\tbackground audio by Meisben\r"
+    audio by GirlWithSoundRecorder of Freesound.org\r\nVancouver, night, traffic,
+    cars and buses, bicycles, pedestrians walking and talking (city) audio by https://www.zapsplat.com\r\n\"Ambience,
+    Seaside Waves, Close, A.wav\" by InspectorJ (www.jshaw.co.uk) of Freesound.org\r\n<i>
+    Agriculture Level</i>\r\n\tTurnip by Google\r\n\tWheat by Google\r\n\tTree roots
+    by Google\r\n\tAmbience_Farm_02 by Meisben of Freesound.org\r\n\t\r\n"
 --- !u!222 &834808554
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1579,7 +1581,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1146048392}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.18025157
+  m_Size: 0.1501915
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2800,7 +2802,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 159
+    m_FontSize: 90
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -2811,7 +2813,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Title
+  m_Text: Acting on Change
 --- !u!222 &1801882554
 CanvasRenderer:
   m_ObjectHideFlags: 0
