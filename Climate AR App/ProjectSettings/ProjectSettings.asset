@@ -171,7 +171,7 @@ PlayerSettings:
     iPhone: com.UniversityOfThePacificLibrary.ActingOnChange
   buildNumber:
     iPhone: 0
-  AndroidBundleVersionCode: 91
+  AndroidBundleVersionCode: 92
   AndroidMinSdkVersion: 19
   AndroidTargetSdkVersion: 29
   AndroidPreferredInstallLocation: 1
@@ -261,7 +261,7 @@ PlayerSettings:
   clonedFromGUID: 3d82002267291432d97db4ab577bd0a0
   templatePackageId: 
   templateDefaultScene: 
-  AndroidTargetArchitectures: 5
+  AndroidTargetArchitectures: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: C:/Users/Keely/Documents/PacificLibraryKeyStore.keystore
@@ -780,7 +780,7 @@ PlayerSettings:
   platformArchitecture:
     iPhone: 2
   scriptingBackend:
-    Android: 0
+    Android: 1
     Standalone: 0
     WP8: 2
     WebGL: 1
