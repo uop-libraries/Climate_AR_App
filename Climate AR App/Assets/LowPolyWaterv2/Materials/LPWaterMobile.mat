@@ -47,7 +47,7 @@ Material:
     - _BumpScale_: 0.46745822
     - _BumpSpeed: 0.2
     - _Cull: 1
-    - _Cull_: 0
+    - _Cull_: 2
     - _Diffuse: 1
     - _Direction: 180
     - _Distort: 0
